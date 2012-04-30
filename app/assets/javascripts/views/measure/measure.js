@@ -1,67 +1,69 @@
-//measuresView
+//measureView
 
 define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/measures/measures.html',
-  'measuresEdit',
-  'measuresList'
+  'text!templates/measure/measure.html',
+  'viewMeasureEdit',
+  'viewMeasureShow'
 ], 
-function($, _, Backbone, measuresTemplate, measuresEdit, measuresList){
+function($, _, Backbone, measureTemplate, measureEdit, measureShow){
   "use strict";
 
-  var MeasuresEditView, 
-      MeasuresListView, 
+  var MeasureEditView, 
+      MeasureShowView, 
 
       measuresView = Backbone.View.extend({
       containers: {
-        viewstack: '.measuresContent' 
+        viewstack: '.measureContent' 
       },  
       events: {
-        'click .create_measure': 'showCreate',
-        'click .list_measures': 'showList'
+        'click .edit._measure': 'showEdit',
+        'click .list_measure': 'showShow'
       },
       initialize: function(){
-        debug('measuresView.init');	
-        MeasuresEditView = new measuresEdit();
-        MeasuresListView = new measuresList();
+        debug('measureView.init');	
+        MeasureEditView = new measureEdit({model: this.model, collection: this.collection, collections: this.collections});
+        MeasureShowView = new measureShow({model: this.model, collection: this.collection, collections: this.collections});
+
+        window.MeasureShowView = MeasureShowView;
       },
       render: function(){
-        debug('measuresView.render');	
+        debug('measureView.render');	
         var data = {},
-            compiledTemplate = _.template( measuresTemplate, data );
+            compiledTemplate = _.template( measureTemplate, data );
 
         $(this.el)
           .empty()
           .append( compiledTemplate );
 
-        this.showList();
+        this.showShow();
 
         return this;
       },
       renderEdit: function() {
-        debug('measuresView.renderEdit');
-        this.renderState(MeasuresEditView.render().el);
+        debug('measureView.renderEdit');
+        this.renderState(MeasureEditView.render().el);
       },      
-      renderList: function() {
-        debug('measuresView.renderList');
-        this.renderState(MeasuresListView.render().el);
+      renderShow: function() {
+        debug('measureView.renderShow');
+        this.renderState(MeasureShowView.render().el);
       },
       renderState:function(state){
-        debug('measuresView.renderState');
+        debug('measureView.renderState');
         $(this.el).find(this.containers.viewstack)
           .empty()
           .append(state);
         this.delegateEvents(this.events);    
       },
-      showCreate: function() {
-        debug('measuresView.createMeasure');
+      showEdit: function() {
+        debug('measuresView.showEdit');
         this.renderEdit();
       },
-      showList:function() {
-        debug('measuresView.listMeasures');
-        this.renderList();      
+      showShow:function() {
+        debug('measureView.showShow');
+        this.renderShow();      
       }
     });
 

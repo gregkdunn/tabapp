@@ -1,25 +1,25 @@
-//measuresView
+//measureEdit
 
 define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/measures/measuresEdit.html'
+  'text!templates/measure/measureEdit.html'
 ], 
-function($, _, Backbone, measuresEditTemplate){
+function($, _, Backbone, measureEditTemplate){
   "use strict";
 
-  var measuresEditView = Backbone.View.extend({
+  var measureEditView = Backbone.View.extend({
     events: {
 
     },
     initialize: function(){
-      debug('measuresEditView.init');	
+      debug('measureEditView.init');	
     },
     render: function(){
-      debug('measuresEditView.render');	
-      var data = {},
-          compiledTemplate = _.template( measuresEditTemplate, data );
+      debug('measureEditView.render');	
+      var data = this.model,
+          compiledTemplate = _.template( measureEditTemplate, data );
 
       $(this.el)
         .empty()
@@ -30,12 +30,12 @@ function($, _, Backbone, measuresEditTemplate){
       return this;
     },
     renderEdit: function() {
-      debug('measuresEditView.renderEdit');
+      debug('measureEditView.renderEdit');
       
       
 
     }
   });
 
-  return measuresEditView;
+  return measureEditView;
 });

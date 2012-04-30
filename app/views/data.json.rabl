@@ -1,8 +1,4 @@
-object false 
-
-child @measures => :measures do
-  attributes :id, :data
-end
+object false
 
 child @accents => :accents do
   attributes :id, :name, :symbol 
@@ -16,7 +12,7 @@ child @fingers => :fingers do
   attributes :id, :name, :symbol 
 end
 
-child @instruments => :instruments do
+child @intruments => :instruments do
   attributes :id, :name, :strings
 end
 

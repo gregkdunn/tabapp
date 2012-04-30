@@ -6,13 +6,14 @@ class MeasuresController < ApplicationController
     @chords = Chord.all
     @fingers = Finger.all
     @instruments = Instrument.all
-    @measures = Measure.all
     @states = State.all
     @time_signatures = TimeSignature.all
 
+    @measures = Measure.all
+
     gon.rabl
 
-    respond_with(@accents, @chords, @fingers, @instruments, @measures, @states, @time_signatures)
+    respond_with(@measures)
   end	
 
   def new

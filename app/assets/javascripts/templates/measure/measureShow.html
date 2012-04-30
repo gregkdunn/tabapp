@@ -1,0 +1,30 @@
+<h4>Measure Show</h4>
+
+<div class="measure">
+
+  <h4 class="instrument">Instrument: <%= instrument %></h4>
+  <h4 class="time_signature">Time Signature: <%= time_signature %></h4>
+  <p class="state"><%= state %></p>
+
+  <div class="grid">
+	  <div class="accent_positions">
+		  <% _.each(chord_positions, function(chord_position) { %>
+		    <div class="bar_<%= chord_position.bar %>"><%= chord_position.chord %></div> 
+		  <% }); %>
+		<div class="chord_positions">  
+		  <% _.each(accent_positions, function(accent_position) { %>
+		    <div class="pos_<%= accent_position.position %> bar_<%= accent_position.bar %>"><%= accent_position.accent %></div>
+		  <% }); %>
+	  </div>
+	  <div class="fret_positions">
+		  <% _.each(fret_positions, function(fret_position) { %>
+		    <div class="pos_<%= fret_position.position %> bar_<%= fret_position.bar %>"><%= fret_position.fret %></div> 
+		  <% }); %>
+	  </div>
+	  <div class="finger_positions">
+		  <% _.each(finger_positions, function(finger_position) { %>
+		    <div class="pos_<%= finger_position.position %> bar_<%= finger_position.bar %>"><%= finger_position.finger %></div>
+		  <% }); %>
+	  </div>
+	</div>
+</div>	

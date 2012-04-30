@@ -31,12 +31,15 @@ require.config({
     collectionStates: 'collections/states',
     collectionTimeSignatures: 'collections/timeSignatures',
 
-    viewAccount: 'views/account/account',   
+    viewAccount: 'views/account/account', 
+    viewMeasure: 'views/measure/measure', 
+    viewMeasureEdit: 'views/measure/measureEdit', 
+    viewMeasureNew: 'views/measure/measureNew', 
+    viewMeasureShow: 'views/measure/measureShow',  
     viewMeasures: 'views/measures/measures',
     viewMeasuresList: 'views/measures/measuresList',
     viewMeasuresEdit: 'views/measures/measuresEdit',
     viewTabs: 'views/tabs/tabs'
-
   }
 });
 

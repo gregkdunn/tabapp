@@ -1,0 +1,3 @@
+Measure.seed(:id,
+	{ :id => 1, :instrument_id => 1, :state_id => 1, :time_signature_id => 1,:data => '{"instrument":1,"state":1,"time_signature":1,"accent_positions":[],"chord_positions":[{"chord":1,"bar":1}],"finger_positions":[],"fret_positions":[{"fret":0,"bar":1,"position":2},{"fret":0,"bar":2,"position":1},{"fret":0,"bar":3,"position":5},{"fret":0,"bar":4,"position":2},{"fret":0,"bar":5,"position":1},{"fret":0,"bar":6,"position":5},{"fret":0,"bar":7,"position":2},{"fret":0,"bar":8,"position":1}]}' }
+	);

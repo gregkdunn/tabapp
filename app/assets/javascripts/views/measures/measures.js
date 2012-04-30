@@ -27,8 +27,11 @@ function($, _, Backbone, measuresTemplate, measuresEdit, measuresList){
 
         this.setCollections();
 
-        MeasuresEditView = new measuresEdit();
-        MeasuresListView = new measuresList();
+        MeasuresEditView = new measuresEdit({collections: this.options.collections});
+        MeasuresListView = new measuresList({collections: this.options.collections});
+
+        window.MeasuresEditView = MeasuresEditView;
+        window.MeasuresListView = MeasuresListView;
       },
       render: function(){
         debug('measuresView.render');	
@@ -74,7 +77,7 @@ function($, _, Backbone, measuresTemplate, measuresEdit, measuresList){
         _.each(keys, function(key){
           that.options[key] = collections[key];
         });
-        delete this.options.collections;
+        //delete this.options.collections;
       }
     });
 
