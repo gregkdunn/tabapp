@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
-gem 'sqlite3'
+gem 'pg'
 gem 'rails-backbone', '~> 0.7.0'
 gem 'jquery-rails'
 gem 'ejs'
@@ -23,6 +23,7 @@ gem 'seed-fu', '~> 2.2.0'
 
 group :assets do
   gem 'sass-rails', '~> 3.2.4'
+  gem 'compass-rails'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end

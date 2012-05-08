@@ -3,6 +3,7 @@ class CreateTimeSignatures < ActiveRecord::Migration
     create_table :time_signatures do |t|
       t.integer :upper
       t.integer :lower
+      t.integer :total
 
       t.timestamps
     end

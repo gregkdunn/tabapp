@@ -1,0 +1,263 @@
+
+.measure {
+  float: left;
+  font-family: 'Myriad Pro', 'Segoe UI', Helvetica, Arial, sans-serif;
+  line-height: 19px;
+  margin: 6px 6px 12px;
+}
+
+.measure_chord {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.info {
+  float: left;
+  color: #fff;
+  font-weight: bold;
+  margin-right: 12px;
+  span {
+    color: #aaa; 
+    font-weight: normal;
+
+  }
+}
+
+.card {
+  background-color: #fff;
+    background-image: image-url('paper.jpg');
+  clear: both;
+  height: 240px;
+  overflow: hidden;
+  position: relative;
+  width: 360px;
+
+  -webkit-box-shadow: 0 8px 6px -6px #777;
+  -moz-box-shadow: 0 8px 6px -6px #777;
+  box-shadow: 0 8px 6px -6px #777;
+
+  header {
+    /* */
+    margin: 12px 6px;
+
+    h1 {
+      margin: 0;
+    }
+  }
+  
+  footer {
+    bottom: 6px;
+    position: absolute;
+    right: 12px;
+
+  }
+}
+
+.strings_bg, .chords, .notes, .fingers {
+  margin: 0;
+  padding: 0;
+}
+
+.chords, .notes, .fingers {
+}  
+
+.chord, .accent, .fret, .finger {
+  font-size: 16px;
+  font-weight: bold;
+  height: 12px;
+  text-align: center;
+  width: 12px;
+}
+
+.finger, footer {
+  color: #999;
+}
+
+.strings_bg {
+  font-size: 13px;
+  line-height: 19px;
+  position: absolute;
+  width: 100%;
+  .string_bg {
+    border-bottom: 2px solid #999;
+  }
+}
+
+.bars {
+  width: 360px;
+}
+
+.chords {
+  /* visibility: hidden; */
+  margin: 0;
+  height: 24px;
+  .chord {
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+
+.notes {
+  position: relative;
+  .string {
+    position: absolute;
+  }
+  .accent, .fret {
+    background-color: #fff;
+    float:left;
+    font-size: 20px;
+  }
+  .accent {
+
+  }
+  .fret {
+
+  }
+}
+
+.fingers {
+  height: 75px;
+  position: absolute;
+  bottom: 0;
+  .finger {
+    font-size:14px;
+    margin-top: 3px;
+  }
+}
+
+.bar {
+  float: left;
+  margin: 3px;
+  position: relative;
+}
+
+.strings_4 {
+  .strings_bg {
+    margin-top: 86px;
+    .string_bg {
+      margin-bottom: 16px;
+    }
+  }
+  .bar {
+    height: 212px;
+    .chords {
+      margin-bottom: 40px;
+    }
+    .string_pos_1 {
+      top: 0px;
+    }
+    .string_pos_2 {
+      top: 18px;
+    }
+    .string_pos_3 {
+      top: 36px;
+    }
+    .string_pos_4 {
+      top: 54px;
+    }  
+  }
+
+  .fingers { 
+  }   
+}
+
+.strings_5 {
+  .strings_bg {
+    margin-top: 66px;
+    .string_bg {
+      margin-bottom: 16px;
+    }
+  }
+  .bar {
+    height: 212px;
+    .chords {
+      margin-bottom: 20px;
+    }
+    .string_pos_1 {
+      top: 0px;
+    }
+    .string_pos_2 {
+      top: 18px;
+    }
+    .string_pos_3 {
+      top: 36px;
+    }
+    .string_pos_4 {
+      top: 54px;
+    }  
+    .string_pos_5 {
+      top: 72px;
+    }
+  }
+
+  .fingers { 
+  }   
+}
+
+.strings_6 {
+  .strings_bg {
+    margin-top: 74px;
+    .string_bg {
+      margin-bottom: 16px;
+    }
+  }
+  .bar {
+    height: 232px;
+    .chords {
+      margin-bottom: 28px;
+    }
+    .string_pos_1 {
+      top: 0px;
+    }
+    .string_pos_2 {
+      top: 18px;
+    }
+    .string_pos_3 {
+      top: 36px;
+    }
+    .string_pos_4 {
+      top: 54px;
+    }  
+    .string_pos_5 {
+      top: 72px;
+    }
+    .string_pos_6 {
+      top: 90px;
+    }
+  }
+
+  .fingers { 
+  }   
+}
+
+.bars_6 {
+  .bars {
+    margin-left: 5px;
+    .bar {
+      margin-right: 21px;
+      width: 36px; /* 12px + fret.margin-right*/
+    }
+  }
+  .notes {
+    width: 40px;
+    .fret {
+      margin-right: 16px;
+    }  
+  }   
+}
+
+.bars_8 {
+  .bars {
+    margin-left: 5px;
+    .bar {
+      margin-right: 6px;
+      width: 36px; /* 12px + fret.margin-right*/
+    }
+  }
+  .notes {
+    width: 33px;
+    .fret {
+      margin-right: 9px;
+    }  
+  }
+}

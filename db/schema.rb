@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20120426024027) do
   create_table "time_signatures", :force => true do |t|
     t.integer  "upper"
     t.integer  "lower"
+    t.integer  "total"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

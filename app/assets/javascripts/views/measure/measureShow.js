@@ -10,6 +10,7 @@ function($, _, Backbone, measureShowTemplate){
   "use strict";
 
   var measureShowView = Backbone.View.extend({
+    className: "measure",
     events: {
 
     },

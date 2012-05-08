@@ -2,6 +2,20 @@ object false
 
 child @measures => :measures do
   attributes :id, :data
+
+  child :instrument do
+	  attributes :id, :name, :strings
+	end
+
+  child :state do
+	  attributes :id, :name
+	end
+
+  child :time_signature do
+	  attributes :id, :lower, :upper
+	end
+
+
 end
 
 child @accents => :accents do

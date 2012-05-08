@@ -24,8 +24,12 @@ function($, _, Backbone, measureTemplate, measureEdit, measureShow){
       },
       initialize: function(){
         debug('measureView.init');	
+
         MeasureEditView = new measureEdit({model: this.model, collection: this.collection, collections: this.collections});
         MeasureShowView = new measureShow({model: this.model, collection: this.collection, collections: this.collections});
+
+
+        
 
         window.MeasureShowView = MeasureShowView;
       },

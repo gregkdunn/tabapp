@@ -1,24 +1,24 @@
 /* core */
-@import url("libraries.css");
+@import url("lib/libraries.css");
 
-@import url("template/template.css");
+@import url("lib/template/template.css");
 /*@import url("template/template_debug.css");*/
 
-@import url("grid/grids.css");
+@import url("lib/grid/grids.css");
 /*@import url("grid/grids_debug.css");*/
 
 
-@import url("module/mod.css");
-@import url("module/mod_skins.css");
+@import url("lib/module/mod.css");
+@import url("lib/module/mod_skins.css");
 /*@import url("module/mod_debug.css");*/
 
-@import url("media/media.css");
+@import url("lib/media/media.css");
 /*@import url("media/media_debug.css");*/
 
-@import url("content.css");
-@import url("heading/heading.css");
-@import url("spacing/space.css");
+@import url("lib/content.css");
+@import url("lib/heading/heading.css");
+@import url("lib/spacing/space.css");
 
-@import url("table/table.css");
-@import url("table/table_skins.css");
+@import url("lib/table/table.css");
+@import url("lib/table/table_skins.css");
 /*@import url("table/table_debug.css");*/

@@ -1,30 +1,57 @@
-<h4>Measure Show</h4>
 
-<div class="measure">
+<div class="card strings_<%= strings %> bars_<%= bars %>">
+  <header>
+  </header>
+  <div class="strings_bg">
+    <% _(strings).times(function(){ %>
+      <div class="string_bg"></div>
+    <% }); %>
+  </div>  
+  
+    <div class="bars">
+    <% _.each(positions.bar, function(bar_pos, index) { %>
+  	  <div class="bar bar_pos_<%= bar_pos.no %>" >
 
-  <h4 class="instrument">Instrument: <%= instrument %></h4>
-  <h4 class="time_signature">Time Signature: <%= time_signature %></h4>
-  <p class="state"><%= state %></p>
+        <div class="chords">
+        <% if(bar_pos.hasOwnProperty('chord')) { %>
+          <div class="chord"><%= bar_pos.chord %></div> 
+        <% } %>
+        </div><!-- /chords -->
 
-  <div class="grid">
-	  <div class="accent_positions">
-		  <% _.each(chord_positions, function(chord_position) { %>
-		    <div class="bar_<%= chord_position.bar %>"><%= chord_position.chord %></div> 
-		  <% }); %>
-		<div class="chord_positions">  
-		  <% _.each(accent_positions, function(accent_position) { %>
-		    <div class="pos_<%= accent_position.position %> bar_<%= accent_position.bar %>"><%= accent_position.accent %></div>
-		  <% }); %>
-	  </div>
-	  <div class="fret_positions">
-		  <% _.each(fret_positions, function(fret_position) { %>
-		    <div class="pos_<%= fret_position.position %> bar_<%= fret_position.bar %>"><%= fret_position.fret %></div> 
-		  <% }); %>
-	  </div>
-	  <div class="finger_positions">
-		  <% _.each(finger_positions, function(finger_position) { %>
-		    <div class="pos_<%= finger_position.position %> bar_<%= finger_position.bar %>"><%= finger_position.finger %></div>
-		  <% }); %>
-	  </div>
-	</div>
-</div>	
+        <div class="notes">  
+        <% _.each(bar_pos.pos, function(string) { %>         
+          <div class="string string_pos_<%= string.no %>">
+          	<% if(string.hasOwnProperty('fret')) { %>
+          	  <div class="fret"><%= string.fret %></div>
+          	<% } %>
+          	<% if(string.hasOwnProperty('accent')) { %>
+          	  <div class="accent"><%= string.accent %></div>
+          	<% } %>
+          </div><!-- /string --> 
+  	    <% }); %>
+        </div><!-- /notes -->
+
+        <div class="fingers">
+        <% _.each(bar_pos.pos, function(string) { %>
+          <div class="string string_pos_<%= string.no %>">
+            <% if(string.hasOwnProperty('finger')) { %>
+              <div class="finger"><%= string.finger %></div>
+            <% } %>
+          </div><!-- /string --> 
+        <% }); %>
+        </div><!-- /fingers -->
+
+  	  </div><!-- /bar --> 
+  	<% }); %>
+    </div><!-- /bars -->
+  
+
+
+  <footer>
+    <small><%= id %></small>
+  </footer>  
+</div><!-- /card -->
+
+<p class="info">Instrument: <span class="instrument"><%= instrument.name %></span></p>
+<p class="info">Time Signature: <span class="time_signature"><%= time_signature.upper %>/<%= time_signature.lower %></span></p>
+
