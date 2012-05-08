@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
-gem 'pg'
+gem 'sqlite3'
 gem 'rails-backbone', '~> 0.7.0'
 gem 'jquery-rails'
 gem 'ejs'

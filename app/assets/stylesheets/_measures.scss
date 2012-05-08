@@ -46,9 +46,9 @@
   }
   
   footer {
-    bottom: 6px;
+    bottom: 0px;
     position: absolute;
-    right: 12px;
+    right: 3px;
 
   }
 }
@@ -108,7 +108,8 @@
     font-size: 20px;
   }
   .accent {
-
+    font-size: 14px;
+    margin-top: -3px;
   }
   .fret {
 
@@ -130,6 +131,10 @@
   margin: 3px;
   position: relative;
 }
+
+
+
+/* String CSS - 4, 5, 6 */
 
 .strings_4 {
   .strings_bg {
@@ -230,6 +235,8 @@
   }   
 }
 
+/* Bar CSS - 6, 8, 12, 16 */
+
 .bars_6 {
   .bars {
     margin-left: 5px;
@@ -259,5 +266,40 @@
     .fret {
       margin-right: 9px;
     }  
+  }
+}
+
+.bars_12 {
+  .bars {
+    margin-left: 5px;
+    .bar {
+      margin-right: 4px;
+      width: 22px; /* 12px + fret.margin-right*/
+    }
+  }
+  .notes {
+    width: 40px;
+    .fret {
+      margin-right: 2px;
+    }  
+  }   
+}
+
+.bars_16 {
+  .bars {
+    margin-left: 2px;
+    .bar {
+      margin-right: 1px;
+      width: 18px; /* 12px + fret.margin-right*/
+    }
+  }
+  .notes {
+    width: 32px;
+    .fret {
+      margin-right: 0px;
+    } 
+    .accent {
+      margin-left: -1px;
+    }   
   }
 }
