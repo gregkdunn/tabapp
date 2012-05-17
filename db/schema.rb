@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20120426024027) do
 
   create_table "instruments", :force => true do |t|
     t.string   "name"
-    t.string   "strings"
+    t.string   "data"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

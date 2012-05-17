@@ -1,0 +1,411 @@
+{
+  :measures =>  
+  [
+    {
+      :id => 1,
+      :data =>  {
+        :strings => 5,
+        :bars => 8,
+        :positions => {
+          :bar => 
+          [
+            { :no => 1,
+              :chord => "G",
+              :pos => 
+              [
+                { :no => 2, 
+                  :fret => 2, 
+                  :finger => "I"
+                }
+              ]
+            },
+            { :no => 2,
+              :pos => 
+              [
+                { :no => 1,
+                  :fret => 1,
+                  :finger => "M"
+                }
+              ]
+            },
+            { :no => 3,
+              :pos => 
+              [
+                { :no => 5,
+                  :fret => 0,
+                  :finger => "T"
+                }
+              ]
+            },
+            { :no => 4,
+              :pos => 
+              [
+                { :no => 2,
+                  :fret => 2,
+                  :finger => "I"
+                }
+              ]
+            },
+            { :no => 5,
+              :pos => 
+              [
+                { :no => 1,
+                  :fret => 1,
+                  :finger => "M"
+                }
+              ]
+            },
+            { :no => 6,
+              :pos => 
+              [
+                { :no => 5,
+                  :fret => 0,
+                  :finger => "T"
+                }
+              ]
+            },
+            { :no => 7,
+              :pos => 
+              [
+                { :no => 2,
+                  :fret => 2,
+                  :finger => "I"
+                }
+              ]
+            },
+            { :no => 8,
+              :pos => 
+              [
+                { :no => 1,
+                  :fret => 1,
+                  :finger => "M"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      :instrument =>  {
+        :id => 1,
+        :name => "banjo",
+        :strings =>  
+        [
+          {:note => "D", :octave =>  2, :length =>  24, :position =>  1 }, 
+          {:note => "B", :octave =>  1, :length =>  24, :position =>  2 }, 
+          {:note => "G", :octave =>  1, :length =>  24, :position =>  3 }, 
+          {:note => "D", :octave =>  1, :length =>  24, :position =>  4 },
+          {:note => "G", :octave =>  2, :length =>  19, :position =>  5 }
+        ]
+      },
+      :state =>  {
+          :id =>  1,
+          :name => "New"
+      },
+      :time_signature =>  
+      {
+        :id =>  3,
+        :lower =>  4,
+        :upper =>  4
+      }
+    }, 
+        {
+      :id =>  2,
+      :data =>  {
+        :strings => 5,
+        :bars => 8,
+        :positions => {
+          :bar => 
+          [
+            { :no => 1,
+              :chord => "G",
+              :pos => 
+              [
+                { :no => 2, 
+                  :fret => 0, 
+                  :finger => "I"
+                }
+              ]
+            },
+            { :no => 2,
+              :pos => 
+              [
+                { :no => 1,
+                  :fret => 0,
+                  :finger => "M"
+                }
+              ]
+            },
+            { :no => 3,
+              :pos => 
+              [
+                { :no => 5,
+                  :fret => 0,
+                  :finger => "T"
+                }
+              ]
+            },
+            { :no => 4,
+              :pos => 
+              [
+                { :no => 2,
+                  :fret => 0,
+                  :finger => "I"
+                }
+              ]
+            },
+            { :no => 5,
+              :pos => 
+              [
+                { :no => 1,
+                  :fret => 0,
+                  :finger => "M"
+                }
+              ]
+            },
+            { :no => 6,
+              :pos => 
+              [
+                { :no => 5,
+                  :fret => 0,
+                  :finger => "T"
+                }
+              ]
+            },
+            { :no => 7,
+              :pos => 
+              [
+                { :no => 2,
+                  :fret => 0,
+                  :finger => "I"
+                }
+              ]
+            },
+            { :no => 8,
+              :pos => 
+              [
+                { :no => 1,
+                  :fret => 0,
+                  :finger => "M"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      :instrument =>  {
+        :id =>  1,
+        :name =>  "banjo",
+        :strings => 
+        {
+          :total =>  5,
+          :positions =>  
+            [
+              {:note =>  "D", :octave =>  2, :length =>  24, :position =>  1 }, 
+              {:note =>  "B", :octave =>  1, :length =>  24, :position =>  2 }, 
+              {:note =>  "G", :octave =>  1, :length =>  24, :position =>  3 }, 
+              {:note =>  "D", :octave =>  1, :length =>  24, :position =>  4 },
+              {:note =>  "G", :octave =>  2, :length =>  19, :position =>  5 }
+            ]
+        }    
+      },
+      :state =>  {
+          :id =>  1,
+          :name =>  "New"
+      },
+      :time_signature =>  
+      {
+        :id =>  3,
+        :lower =>  4,
+        :upper =>  4
+      }
+    }
+  ],
+  :accents =>  
+  [
+    {
+      :id =>  1,
+      :name =>  "slide",
+      :symbol =>  "-"
+    }, 
+    {
+      :id =>  2,
+      :name =>  "hammer-on",
+      :symbol =>  "|"
+    }, 
+    {
+      :id =>  3,
+      :name =>  "pull-off",
+      :symbol =>  "/"
+    }, 
+    {
+      :id =>  4,
+      :name =>  "bend",
+      :symbol =>  "~"
+    }, 
+    {
+      :id =>  5,
+      :name =>  "mute",
+      :symbol =>  "*"
+    }
+  ],
+  :chords =>  
+  [
+    {
+      :id =>  1,
+      :name =>  "G",
+      :notes =>  
+      [
+        {:name => "G", :position => 1}, 
+        {:name => "B", :position => 3}, 
+        {:name => "D", :position => 5}
+      ]
+    }, 
+    {
+      :id =>  2,
+      :name =>  "C",
+      :notes =>  
+      [
+        {:name => "C", :position => 1},
+        {:name => "E", :position => 3},
+        {:name => "G", :position => 5}
+      ]
+    }, 
+    {
+      :id =>  3,
+      :name =>  "D",
+      :notes =>  
+      [
+        {:name => "D", :position => 1},
+        {:name => "F#", :position => 3},
+        {:name => "A", :position => 5}
+      ]
+    }
+  ],
+  :fingers =>  
+  [
+    {
+      :id =>  1,
+      :name =>  "Thumb",
+      :symbol =>  "T"
+    }, 
+    {
+      :id =>  2,
+      :name =>  "Index",
+      :symbol =>  "I"
+    }, 
+    {
+      :id =>  3,
+      :name =>  "Middle",
+      :symbol =>  "M"
+    }, 
+    {
+      :id =>  4,
+      :name =>  "Ring",
+      :symbol =>  "R"
+    }, 
+    {
+      :id =>  5,
+      :name =>  "Pinky",
+      :symbol =>  "P"
+    }
+  ],
+  :instruments =>  
+  [
+    {
+      :id =>  1,
+      :name =>  "banjo",
+      :strings =>  
+      [
+        {:note =>  "D", :octave =>  2, :length =>  24, :position =>  1 }, 
+        {:note =>  "B", :octave =>  1, :length =>  24, :position =>  2 }, 
+        {:note =>  "G", :octave =>  1, :length =>  24, :position =>  3 }, 
+        {:note =>  "D", :octave =>  1, :length =>  24, :position =>  4 },
+        {:note =>  "G", :octave =>  2, :length =>  19, :position =>  5 }
+      ]
+    }
+  ],
+  :states =>  
+  [
+    {
+      :id =>  1,
+      :name =>  "New"
+    }, 
+    {
+      :id =>  2,
+      :name =>  "In Progress"
+    }, 
+    {
+      :id =>  3,
+      :name =>  "Published"
+    }
+  ],
+  :time_signatures =>  
+  [
+    {
+      :id =>  1,
+      :lower =>  4,
+      :upper =>  2
+    }, 
+    {
+      :id =>  2,
+      :lower =>  4,
+      :upper =>  3
+    }, 
+    {
+      :id =>  3,
+      :lower =>  4,
+      :upper =>  4
+    }
+  ]
+}
+
+
+
+
+
+
+FIXTURES
+-------------------------
+
+:measures => [ 
+  { :id => 1, :data => '{"strings":5,"bars":3,"positions":{"bar":[{"no":1,"chord":"G","pos":[{"no":2,"fret":2,"finger":"I"}]},{"no":2,"pos":[{"no":1,"fret":1,"finger":"M"}]},{"no":3,"pos":[{"no":5,"fret":0,"finger":"T"}]},{"no":4,"pos":[{"no":2,"fret":2,"finger":"I"}]},{"no":5,"pos":[{"no":1,"fret":1,"finger":"M"}]},{"no":6,"pos":[{"no":5,"fret":0,"finger":"T"}]},{"no":7,"pos":[{"no":2,"fret":2,"finger":"I"}]},{"no":8,"pos":[{"no":1,"fret":1,"finger":"M"}]}]}}', :instrument_id => 1, :state_id => 1, :time_signature_id => 3, }, 
+  { :id => 2, :data => '{"strings":5,"bars":3,"positions":{"bar":[{"no":1,"chord":"G","pos":[{"no":2,"fret":0,"finger":"I"}]},{"no":2,"pos":[{"no":1,"fret":0,"finger":"M"}]},{"no":3,"pos":[{"no":5,"fret":0,"finger":"T"}]},{"no":4,"pos":[{"no":2,"fret":0,"finger":"I"}]},{"no":5,"pos":[{"no":1,"fret":0,"finger":"M"}]},{"no":6,"pos":[{"no":5,"fret":0,"finger":"T"}]},{"no":7,"pos":[{"no":2,"fret":0,"finger":"I"}]},{"no":8,"pos":[{"no":1,"fret":0,"finger":"M"}]}]}}', :instrument_id => 1, :state_id => 1, :time_signature_id => 3, } 
+]
+
+:accents => [ 
+  { :id => 1, :name => "slide", :symbol => "-" }, 
+  { :id => 2, :name => "hammer-on", :symbol => "|" }, 
+  { :id => 3, :name => "pull-off", :symbol => "/" }, 
+  { :id => 4, :name => "bend", :symbol => "~" }, 
+  { :id => 5, :name => "mute", :symbol => "*" } 
+]
+
+:chords => [ 
+  { :id => 1, :name => "G", :notes => '[{name:"G", position:1},{name:"B", position:3},{name:"D", position:5}]'},
+  { :id => 2, :name => "C", :notes => '[{name:"C", position:1},{name:"E", position:3},{name:"G", position:5}]'},
+  { :id => 3, :name => "D", :notes => '[{name:"D", position:1},{name:"F#", position:3},{name:"A", position:5}]'}
+]
+
+:fingers => [ 
+  { :id => 1, :name => "Thumb", :symbol => "T" }, 
+  { :id => 2, :name => "Index", :symbol => "I" }, 
+  { :id => 3, :name => "Middle", :symbol => "M" }, 
+  { :id => 4, :name => "Ring", :symbol => "R" }, 
+  { :id => 5, :name => "Pinky", :symbol => "P" } 
+]
+
+:instruments => [ 
+  { :id => 1, :name => "banjo" , :strings => '[{note: "D", octave: 2, length: 24, position: 1 }, {note: "B", octave: 1, length: 24, position: 2  }, {note: "G", octave: 1, length: 24, position: 3 }, {note: "D", octave: 1, length: 24, position: 4  },  {note: "G", octave: 2, length: 19, position: 5  }]' }
+]
+
+:states => [ 
+  { :id => 1, :name => "New" }, 
+  { :id => 2, :name => "In Progress" }, 
+  { :id => 3, :name => "Published" } 
+]
+
+:time_signatures => [ 
+  { :id => 1, :lower => 4, :upper => 2 }, 
+  { :id => 2, :lower => 4, :upper => 3 }, 
+  { :id => 3, :lower => 4, :upper => 4 } 
+]

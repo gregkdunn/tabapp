@@ -1,1 +1,22 @@
-<h4>Measure Edit</h4>
+<div class="instrument_container"></div>
+<div class="time_signature_container"></div>
+<div class="card_edit_container"></div>
+
+<!-- -->
+
+<div class="card card_edit strings_<%= strings %> bars_<%= bars %>">
+  <header>
+  </header>
+  <div class="strings_bg">
+  <% _(strings).times(function(){ %>
+    <div class="string_bg"></div>
+  <% }); %>
+  </div>  
+  
+    <div class="bars">
+
+    </div><!-- /bars -->
+
+  <footer>
+  </footer>  
+</div><!-- /card -->

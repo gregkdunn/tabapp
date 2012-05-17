@@ -51,7 +51,7 @@ define([
             measures : new Measures(config.measures),
             notes : new Notes(config.notes),
             states : new States(config.states),
-            timesignatures : new TimeSignatures(config.timesignatures)
+            time_signatures : new TimeSignatures(config.time_signatures)
           };
 
       //init header

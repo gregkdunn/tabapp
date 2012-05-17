@@ -303,3 +303,35 @@
     }   
   }
 }
+
+
+
+.card_edit {
+
+  .bars{
+    .bar:hover {
+      background-color: #eee;
+    }
+    .chord,
+    .accent,
+    .fret,
+    .finger{
+      opacity: .3;
+      &:hover {
+        opacity: 1;
+      }
+    }
+    .chord:hover {
+      background-color: #aaa;
+    }
+    .fret:hover {
+      background-color: #bbb;
+    }
+    .accent:hover {
+      background-color: #ccc;
+    }
+    .finger:hover {
+      background-color: #ddd;
+    }
+  }
+}

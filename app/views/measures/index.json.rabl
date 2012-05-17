@@ -31,7 +31,7 @@ child @fingers => :fingers do
 end
 
 child @instruments => :instruments do
-  attributes :id, :name, :strings
+  attributes :id, :name, :data
 end
 
 child @states => :states do 
