@@ -14,8 +14,9 @@ function($, _, Backbone, measureEditTemplate, barTemplate, noteTemplate, fingerT
 
   var measureEditView = Backbone.View.extend({
     className: "measure",
-    events: {
-
+    events:{
+     'keyup': 'checkKeyPressInput',
+     'mousewheel': 'checkMouseScroll',
     },
     initialize: function(){
       debug('measureEditView.init');	
@@ -65,15 +66,161 @@ function($, _, Backbone, measureEditTemplate, barTemplate, noteTemplate, fingerT
             fingers_container = finger_containers.eq(i);
 
         _.each(beat.pos, function(strng) {
+          strng = _.extend(strng, {bar_no: i + 1});
           debug('strng:');
           debugObject(strng);
-          var compiled_note = _.template( noteTemplate, strng),
+          var compiled_note = _.template(noteTemplate, strng),
               compiled_finger = _.template(fingerTemplate, strng);
           note_container.append(compiled_note);
           fingers_container.append(compiled_finger);
         });
       });           
-    }
+    },
+    checkMouseScroll: function(event) {
+      debug('measureEditView.checkMouseScroll');
+      console.log(event);
+    },
+
+    checkKeyPressInput: function(event) {
+      debug('measureEditView.checkKeyPressInput');
+      console.log('event', event);
+      if(this.checkSpecialCharacters(event.keyCode)) {
+        event.stopPropagation();
+        event.preventDefault();     
+      } else {
+      }
+      
+    },
+
+    checkSpecialCharacters: function(key) {
+      debug('measureEditView.checkSpecialCharacters');
+      //debug('key', key);
+
+      var current_input = $(this.el).find('input:focus');
+
+      switch(key) {
+        case 38:
+          //up arrow 
+          this.moveField('up');
+          break;
+        case 40:
+          //down arrow 
+          this.moveField('down');
+          break;
+        case 37:
+          //left arrow 
+          this.moveField('left');
+          break;
+        case 39:
+          //right arrow 
+          this.moveField('right');
+          break; 
+        case 27:
+          //esc arrow 
+          this.clearInput();
+          break;                                         
+        default:
+          return false;
+      }
+      return true;
+    },
+    clearInput: function() {
+
+    },
+    moveField: function(direction) {
+      debug('measureEditView.moveField: ' + direction);
+      var $el = $(this.el),
+          has_eighth = $el.find('.card_edit').hasClass('eighth'),
+          all_fields = $el.find('.card_edit input'),
+          current_field = all_fields.filter(':focus'),
+          has_chord = current_field.parent().hasClass('chord'),
+          has_accent = current_field.parent().hasClass('accent'),
+          has_fret = current_field.parent().hasClass('fret'),
+          has_finger = current_field.parent().hasClass('finger'),
+          field_type,
+          new_field,
+          delta = 1,
+          current_bar_container = current_field.parents('.bar'),
+          current_bar_inputs = current_bar_container.find('input').filter(':visible'),
+          current_y_position = current_bar_inputs.index(current_field),
+
+          current_bars_container = current_field.parents('.bars'),
+          current_bars = current_bars_container.find('.bar').filter(':visible'),
+          current_x_position = current_bars.index(current_bar_container);
+
+      console.log('has_eighth', has_eighth);
+      console.log('has_chord', has_chord);
+      //console.log('all_fields', all_fields.length);   
+      console.log('current_field', current_field.attr('name'));    
+      console.log('x', current_x_position); 
+      console.log('y', current_y_position); 
+
+      if(has_eighth && (has_chord || has_finger)) {
+        delta = 2;
+      }
+
+      switch(direction) {
+        case 'up':
+          //up arrow 
+          console.log('up');
+          new_field = current_bar_inputs.eq(current_y_position-1);
+          break;
+        case 'down':
+          //down arrow 
+          console.log('down');
+          new_field = current_bar_inputs.eq(current_y_position+1);
+          if(!new_field.attr('name')){
+            new_field = current_bar_inputs.eq(0);
+            console.log('@bottom:', new_field);
+          }
+          break;
+        case 'left':
+          //left arrow 
+          console.log('left');
+          if(has_eighth) {
+            if (has_chord || has_finger) {
+              new_field = current_bars.eq(current_x_position-delta).find('input:visible').eq(current_y_position);
+            } else {
+              if(current_x_position%2 == 0) {
+                new_field = current_bars.eq(current_x_position-1).find('input:visible').eq(current_y_position-1);
+              } else {
+                new_field = current_bars.eq(current_x_position-1).find('input:visible').eq(current_y_position+1);
+              }
+            }
+          } else {
+
+          }
+          break;
+        case 'right':
+          //right arrow 
+          console.log('right');
+          if(has_eighth) {
+            if (has_chord || has_finger) {
+              new_field = current_bars.eq(current_x_position+delta).find('input:visible').eq(current_y_position);
+              if(!new_field.attr('name')) {
+                new_field = current_bars.eq(0).find('input:visible').eq(current_y_position);
+              }
+            } else {
+              if(current_x_position%2 == 0) {
+                new_field = current_bars.eq(current_x_position+1).find('input:visible').eq(current_y_position-1);
+              } else {
+                new_field = current_bars.eq(current_x_position+1).find('input:visible').eq(current_y_position+1);
+              }
+              if(!new_field.attr('name')) {
+                new_field = current_bars.eq(0).find('input:visible').eq(current_y_position+1);
+              }
+            }
+          } else {
+            
+          }
+          break;                                     
+        default:
+          return false;
+      }
+      console.log('new_field',  new_field.attr('name')); 
+      console.log(new_field);
+      $(new_field).focus();
+    },
 
   });
 

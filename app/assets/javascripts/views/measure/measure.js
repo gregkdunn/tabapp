@@ -28,9 +28,6 @@ function($, _, Backbone, measureTemplate, measureEdit, measureShow){
         MeasureEditView = new measureEdit({model: this.model, collection: this.collection, collections: this.collections});
         MeasureShowView = new measureShow({model: this.model, collection: this.collection, collections: this.collections});
 
-
-        
-
         window.MeasureShowView = MeasureShowView;
       },
       render: function(){

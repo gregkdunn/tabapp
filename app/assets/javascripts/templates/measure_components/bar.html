@@ -1,7 +1,7 @@
 <div class="bar bar_pos_<%= no %>" >
 
   <div class="chords">
-  	<div class="chord"><% if(chord) { %><%= chord %><% } %></div>
+  	<div class="chord"><input name="chord_bar_<%= no %>" type="text" maxlength="1" value="<% if(chord) { %><%= chord %><% } %>"/></div>
   </div><!-- /chords -->
 
   <div class="notes">  
