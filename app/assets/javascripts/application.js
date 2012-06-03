@@ -31,7 +31,9 @@ require.config({
     collectionStates: 'collections/states',
     collectionTimeSignatures: 'collections/timeSignatures',
 
-    viewAccount: 'views/account/account', 
+    viewAccount: 'views/account/account',
+    viewList: 'views/lists/list',
+    viewListItem: 'views/lists/listItem', 
     viewMeasure: 'views/measure/measure', 
     viewMeasureEdit: 'views/measure/measureEdit', 
     viewMeasureNew: 'views/measure/measureNew', 

@@ -15,8 +15,11 @@ function($, _, Backbone, measureEditTemplate, barTemplate, noteTemplate, fingerT
   var measureEditView = Backbone.View.extend({
     className: "measure",
     events:{
+     //nav
      'keyup': 'checkKeyPressInput',
      'mousewheel': 'checkMouseScroll',
+     //enter
+     'focus input': 'addOverlay'
     },
     initialize: function(){
       debug('measureEditView.init');	
@@ -78,7 +81,37 @@ function($, _, Backbone, measureEditTemplate, barTemplate, noteTemplate, fingerT
     },
     checkMouseScroll: function(event) {
       debug('measureEditView.checkMouseScroll');
-      console.log(event);
+      //console.log(event);
+      var delta = 0,
+          $event = event,
+          event = event.originalEvent;
+
+        if (!event) {/* For IE. */
+          event = window.event;
+        }        
+        if (event.wheelDelta) { /* IE/Opera. */
+          delta = event.wheelDelta/120;
+        } else if (event.detail) { /** Mozilla case. */
+          /** In Mozilla, sign of delta is different than in IE.
+           * Also, delta is multiple of 3.
+           */
+          delta = -event.detail/3;
+        }
+        /** If delta is nonzero, handle it.
+         * Basically, delta is now positive if wheel was scrolled up,
+         * and negative, if wheel was scrolled down.
+         */
+        if (delta) {
+          this.moveBar(delta);
+        }  
+        /** Prevent default actions caused by mouse wheel.
+         * That might be ugly, but we handle scrolls somehow
+         * anyway, so don't bother here..
+         */
+        if (event.preventDefault) {
+          event.preventDefault();
+        } 
+        event.returnValue = false;
     },
 
     checkKeyPressInput: function(event) {
@@ -125,7 +158,9 @@ function($, _, Backbone, measureEditTemplate, barTemplate, noteTemplate, fingerT
       return true;
     },
     clearInput: function() {
-
+      debug('measureEditView.clearField');
+      var current_field = all_fields.filter(':focus');
+      current_field.val('');  
     },
     moveField: function(direction) {
       debug('measureEditView.moveField: ' + direction);
@@ -139,7 +174,7 @@ function($, _, Backbone, measureEditTemplate, barTemplate, noteTemplate, fingerT
           has_finger = current_field.parent().hasClass('finger'),
           field_type,
           new_field,
-          delta = 1,
+          travel = 1,
           current_bar_container = current_field.parents('.bar'),
           current_bar_inputs = current_bar_container.find('input').filter(':visible'),
           current_y_position = current_bar_inputs.index(current_field),
@@ -156,7 +191,7 @@ function($, _, Backbone, measureEditTemplate, barTemplate, noteTemplate, fingerT
       console.log('y', current_y_position); 
 
       if(has_eighth && (has_chord || has_finger)) {
-        delta = 2;
+        travel = 2;
       }
 
       switch(direction) {
@@ -179,7 +214,7 @@ function($, _, Backbone, measureEditTemplate, barTemplate, noteTemplate, fingerT
           console.log('left');
           if(has_eighth) {
             if (has_chord || has_finger) {
-              new_field = current_bars.eq(current_x_position-delta).find('input:visible').eq(current_y_position);
+              new_field = current_bars.eq(current_x_position-travel).find('input:visible').eq(current_y_position);
             } else {
               if(current_x_position%2 == 0) {
                 new_field = current_bars.eq(current_x_position-1).find('input:visible').eq(current_y_position-1);
@@ -196,7 +231,7 @@ function($, _, Backbone, measureEditTemplate, barTemplate, noteTemplate, fingerT
           console.log('right');
           if(has_eighth) {
             if (has_chord || has_finger) {
-              new_field = current_bars.eq(current_x_position+delta).find('input:visible').eq(current_y_position);
+              new_field = current_bars.eq(current_x_position+travel).find('input:visible').eq(current_y_position);
               if(!new_field.attr('name')) {
                 new_field = current_bars.eq(0).find('input:visible').eq(current_y_position);
               }
@@ -211,7 +246,7 @@ function($, _, Backbone, measureEditTemplate, barTemplate, noteTemplate, fingerT
               }
             }
           } else {
-            
+
           }
           break;                                     
         default:
@@ -221,6 +256,19 @@ function($, _, Backbone, measureEditTemplate, barTemplate, noteTemplate, fingerT
       console.log(new_field);
       $(new_field).focus();
     },
+    moveBar: function(delta){
+      debug('measureEditView.moveBar: ' + delta);
+      if(delta > 0) {
+        this.moveField('right');
+      } else {
+        this.moveField('left');
+      }   
+          
+    },
+
+    addOverlay:function() {
+      debug('measureEditView.addOverlay');
+    }
 
   });
 

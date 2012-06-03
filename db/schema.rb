@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120426024027) do
+ActiveRecord::Schema.define(:version => 20120527115433) do
 
   create_table "accents", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(:version => 20120426024027) do
   create_table "fingers", :force => true do |t|
     t.string   "name"
     t.string   "symbol"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "granularities", :force => true do |t|
+    t.string   "name"
+    t.string   "class"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

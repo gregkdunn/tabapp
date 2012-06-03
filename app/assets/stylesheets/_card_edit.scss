@@ -1,0 +1,67 @@
+
+$card_height: 360px;
+$card_width: $card_height * 1.5;
+$base_font_size: $card_height * .083333333;
+
+.card_edit {
+  height: $card_height;
+  margin: 24px auto;
+  width: $card_width;
+
+  .bars{
+    .bar:hover {
+    }
+  }
+
+  .bar input {
+    background-color: #eee; 
+    border: 1px solid transparent; 
+    font-family: 'Myriad Pro', 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    height: 100%;
+    width: 100%;
+    &:focus {
+      background-color: #fff; 
+      border: 1px solid #ddd; 
+    }
+  }
+  .chord,
+  .accent,
+  .fret,
+  .finger
+  {
+    background-color: transparent; 
+  }
+  .chord {
+    margin-bottom: 17px;
+  }
+  .chord,
+  .chord input {
+    font-size: 24px;
+    height: 23px;
+    width: 18px;
+  }
+  .accent, 
+  .accent input {
+    font-size: 14px;
+    height: 13px;
+  }
+
+  .fret, 
+  .fret input {
+    font-size: 20px;
+    height: 19px;
+  }
+  .finger, 
+  .finger input
+  {
+    color: #999;
+    font-size: 16px;
+    font-weight: bold;
+    height: 12px;
+    text-align: center;
+    width: 12px;
+  }
+}

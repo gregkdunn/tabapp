@@ -1,0 +1,293 @@
+
+$card_height: 240px;
+$card_width: $card_height * 1.5;
+$base_font_size: $card_height * .083333333;
+
+.card {
+  background-color: #fff;
+    background-image: image-url('paper.jpg');
+  clear: both;
+  height: $card_height;
+  overflow: hidden;
+  position: relative;
+  width: $card_width;
+
+  -webkit-box-shadow: 0 8px 6px -6px #777;
+  -moz-box-shadow: 0 8px 6px -6px #777;
+  box-shadow: 0 8px 6px -6px #777;
+  
+  footer {
+    bottom: 0px;
+    position: absolute;
+    right: 0.8333333%; /* 3/360 */
+  }
+}
+
+.strings_bg, .chords, .notes, .fingers {
+  margin: 0;
+  padding: 0;
+}
+
+.chord,
+.accent, 
+.fret, 
+.finger 
+{
+  color: #000;
+  font-size:  $base_font_size * .8;
+  font-weight: bold;
+  height: 5%; /* 12/240 */
+  text-align: center;
+  width: 3.3333333%; /* 12/360 */
+}
+
+.finger,
+footer {
+  color: #999;
+}
+
+.strings_bg {
+  position: absolute;
+  width: 100%;
+  .string_bg {
+    border-bottom: 2px solid #999;
+    height: 1px;
+  }
+}
+
+.bars {
+  height:100%;/* 240/240 */
+  left:0; 
+  position: absolute;
+  top: 0;
+  width: 100%;/* 360/360 */
+}
+
+.chords {
+  /* visibility: hidden; */
+  margin: 0;
+  padding-top: 1%;
+  .chord,
+  .chord input {
+    font-size:  $base_font_size * 1.2;
+    font-weight: bold;
+  }
+  .chord{
+    padding-top: 11%
+  } 
+}
+
+.notes {
+  width: 100%;
+  .string {
+  }
+  .accent, .fret {
+    background-color: #fff;
+    float:left;
+    font-size: $base_font_size;
+  }
+  .accent {
+    font-size: $base_font_size * .7;
+    width: 27.7290744%;
+  }
+  .fret {
+    margin-right: 5.2709256%;/* 1/18.972 */
+    width: 67%;
+  }
+}
+
+.fingers {
+  height: 33.5871026%;/* 75/223.3 */
+  .finger {
+    font-size: $base_font_size * .7;
+    margin-top: 4%;/* 3/75 */
+  }
+  .string {
+    height: 15%;
+  }
+}
+
+.bar {
+  float: left;
+  margin: 0.8333333%; /* 3/360 */
+}
+
+
+/* String CSS - 4, 5, 6 */
+
+.strings_4 {
+  .strings_bg {
+    height: 62.75%;/* _/240 */
+    margin-top: 27.15%;/* _/240 */
+    .string_bg {
+      margin-bottom: 5.75%;
+    }
+  }
+  .bar {
+    height: 88.3333333%;/* 212/240 */
+    .chords {
+      height: 26.5%;
+    }
+    .notes, .fingers {
+      height: 45.2830189%; /*  96/212 */
+
+    }
+    .notes {
+      .string {
+        height: 25%;/* 18/96 */
+      }
+    }
+    .accent {
+      height: 18%;/* 21/18 */
+    }
+    .fret {
+      margin-top: 10%;/*  9.6/96 */
+    }
+  }
+}
+
+.strings_5 {
+  .strings_bg {
+    height: 72.5%;/* 174/240 */
+    margin-top: 25%;
+    .string_bg {
+      margin-bottom: 4.45%;
+    }
+  }
+  .bar {
+    height: 88.3333333%;/* 212/240 */
+    .chords {
+      height: 22.5%;/* 76.32/212 */
+    }
+    .notes, .fingers {
+      height: 45.2830189%; /*  96/212 */
+    }
+    .notes {
+      margin-bottom: 60%;
+      .string {
+        height: 20%;/* 18/96 */
+      }
+    }
+    .accent {
+      height: 18%;/* 21/18 */
+    }
+    .fret {
+      margin-top: 10%;/*  9.6/96 */
+    }
+  } 
+}
+
+.strings_6 {
+  .strings_bg {
+    height: 72.5%;/* 174/240 */
+    margin-top: 25%;
+    .string_bg {
+      margin-bottom: 4.45%;
+    }
+  }
+  .bar {
+    height: 88.3333333%;/* 212/240 */
+    .chords {
+      height: 22.5%;/* 76.32/212 */
+    }
+    .notes, .fingers {
+      height: 45.2830189%; /*  96/212 */
+    }
+    .notes {
+      margin-bottom: 60%;
+      .string {
+        height: 20%;/* 18/96 */
+      }
+    }
+    .accent {
+      height: 18%;/* 21/18 */
+    }
+    .fret {
+      margin-top: 10%;/*  9.6/96 */
+    }
+  } 
+}
+
+/* Bar CSS - 6, 8, 12, 16 */
+
+.bars_6 {
+  .bars {
+    margin-left: 1.3888889%;/* 5/360 */
+    .bar {
+      margin-right: 5.8333333%;/* 21/360 */
+      width: 10%; /* 36/360 */
+    }
+  }   
+}
+
+.bars_8 {
+  .bars {
+    margin-left: 1.3888889%;/* 5/360 */
+    .bar {
+      margin-right: 1.6666667%;/* 6/360 */
+      width: 10%; /* 36/360 */
+    }
+  }
+}
+
+.bars_12 {
+  .bars {
+    margin-left: 1.3888889%;/* 5/360 */
+    .bar {
+      margin-right: 1.1111111%;/* 4/360 */
+      width: 6.6%; /* _/360 */
+    }
+    .fret {
+      margin-right: 9%; 
+    }
+  }  
+}
+
+.bars_16 {
+  .bars {
+    margin-left: .5555556%;/* 2/360 */
+    .bar {
+      margin-right: .2777778%;/* 1/360 */
+      width: 5.27%%;/* 18.972/360 */
+    }
+  }
+}
+
+.eighth {
+  .bar_pos_1,
+  .bar_pos_3,
+  .bar_pos_5,
+  .bar_pos_7,
+  .bar_pos_9,
+  .bar_pos_11,
+  .bar_pos_13,
+  .bar_pos_15 {
+    .accent{
+      display: none;
+    }
+    
+  }
+  .bar_pos_2,
+  .bar_pos_4,
+  .bar_pos_6,
+  .bar_pos_8,
+  .bar_pos_10,
+  .bar_pos_12,
+  .bar_pos_14,
+  .bar_pos_16 {
+    .chord {
+      display: none;
+    }
+    .fret {
+      display: none;
+    }
+    .finger {
+      display: none;
+    }
+  }
+}
+
+.sixteenth {
+
+}
+

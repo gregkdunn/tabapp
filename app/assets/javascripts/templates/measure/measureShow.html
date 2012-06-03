@@ -1,7 +1,6 @@
 
 <div class="card strings_<%= strings %> bars_<%= bars %>">
-  <header>
-  </header>
+
   <div class="strings_bg">
     <% _(strings).times(function(){ %>
       <div class="string_bg"></div>
@@ -20,7 +19,7 @@
 
         <div class="notes">  
         <% _.each(bar_pos.pos, function(string) { %>         
-          <div class="string string_pos_<%= string.no %>">
+          <div class="string string_pos_<%= string.no %> clearfix">
           	<% if(string.hasOwnProperty('fret')) { %>
           	  <div class="fret"><%= string.fret %></div>
           	<% } %>
@@ -33,7 +32,7 @@
 
         <div class="fingers">
         <% _.each(bar_pos.pos, function(string) { %>
-          <div class="string string_pos_<%= string.no %>">
+          <div class="string string_pos_<%= string.no %> clearfix">
             <% if(string.hasOwnProperty('finger')) { %>
               <div class="finger"><%= string.finger %></div>
             <% } %>

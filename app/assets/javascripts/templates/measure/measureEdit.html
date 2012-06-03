@@ -1,22 +1,19 @@
 <div class="instrument_container"></div>
 <div class="time_signature_container"></div>
-<div class="card_edit_container"></div>
+<div class="granularity_container"></div>
+<div class="card_edit_container">
+  <div class="card card_edit strings_<%= strings %> bars_<%= bars %> eighth">
+    <div class="strings_bg">
+    <% _(strings).times(function(){ %>
+      <div class="string_bg"></div>
+    <% }); %>
+    </div>  
+    
+      <div class="bars">
 
-<!-- -->
+      </div><!-- /bars -->
 
-<div class="card card_edit strings_<%= strings %> bars_<%= bars %> eighth">
-  <header>
-  </header>
-  <div class="strings_bg">
-  <% _(strings).times(function(){ %>
-    <div class="string_bg"></div>
-  <% }); %>
-  </div>  
-  
-    <div class="bars">
-
-    </div><!-- /bars -->
-
-  <footer>
-  </footer>  
-</div><!-- /card -->
+    <footer>
+    </footer>  
+  </div><!-- /card -->
+</div>

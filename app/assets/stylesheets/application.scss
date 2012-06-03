@@ -1,14 +1,29 @@
 
 
-@import "measures_responsive";
+@import "measures";
+@import "card";
+@import "card_edit";
 
 body {
 	background-color: #333;
 	/*background-image: image-url('wood.png');*/
 	background-repeat:repeat-x;
 	background-position: 0 -480px;
+	color:#ddd;
+}
+
+nav {
+	margin-bottom: 24px;
 }
 
 footer {
 	clear: both;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
