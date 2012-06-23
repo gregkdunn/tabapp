@@ -17,7 +17,7 @@ $base_font_size: $card_height * .083333333;
     background-color: #eee; 
     border: 1px solid transparent; 
     font-family: 'Myriad Pro', 'Segoe UI', Helvetica, Arial, sans-serif;
-    font-size: 16px;
+    font-size: $base_font_size * .8;
     font-weight: bold;
     text-transform: uppercase;
     height: 100%;
@@ -39,29 +39,31 @@ $base_font_size: $card_height * .083333333;
   }
   .chord,
   .chord input {
-    font-size: 24px;
-    height: 23px;
-    width: 18px;
+    font-size: $base_font_size * 1.2;
+    height: $base_font_size * 1.2;
+    width: $base_font_size * .9;
   }
   .accent, 
   .accent input {
-    font-size: 14px;
-    height: 13px;
+    font-size: $base_font_size * .7;
+    height: $base_font_size * .65;
+    width: $base_font_size * .55;
   }
 
   .fret, 
   .fret input {
-    font-size: 20px;
-    height: 19px;
+    font-size: $base_font_size;
+    height: $base_font_size * .9;
+    width: $base_font_size * .8;
   }
   .finger, 
   .finger input
   {
     color: #999;
-    font-size: 16px;
+    font-size: $base_font_size * .8;
     font-weight: bold;
-    height: 12px;
+    height: $base_font_size * .8;
     text-align: center;
-    width: 12px;
+    width: $base_font_size * .8;
   }
 }

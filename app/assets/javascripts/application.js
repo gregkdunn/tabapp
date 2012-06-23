@@ -8,6 +8,7 @@ require.config({
     text: 'libs/text',
     searchableCollection: 'collections/searchable',
     seeder: 'seeder',
+    knobify: 'libs/jquery.knob-1.1.1',
 
     router: 'routers/router',
 
@@ -16,6 +17,7 @@ require.config({
     modelAccent: 'models/accent',
     modelChord: 'models/chord',
     modelFinger: 'models/finger',
+    modelGranularity: 'models/granularity',
     modelInstrument: 'models/instrument',
     modelMeasure: 'models/measure',
     modelNote: 'models/note',
@@ -25,6 +27,7 @@ require.config({
     collectionAccents: 'collections/accents',
     collectionChords: 'collections/chords',
     collectionFingers: 'collections/fingers',
+    collectionGranularities: 'collections/granularities',
     collectionInstruments: 'collections/instruments',
     collectionMeasures: 'collections/measures',
     collectionNotes: 'collections/notes',
@@ -32,6 +35,7 @@ require.config({
     collectionTimeSignatures: 'collections/timeSignatures',
 
     viewAccount: 'views/account/account',
+    viewInputOverlay: 'views/components/inputOverlay',
     viewList: 'views/lists/list',
     viewListItem: 'views/lists/listItem', 
     viewMeasure: 'views/measure/measure', 
@@ -41,7 +45,10 @@ require.config({
     viewMeasures: 'views/measures/measures',
     viewMeasuresList: 'views/measures/measuresList',
     viewMeasuresEdit: 'views/measures/measuresEdit',
-    viewTabs: 'views/tabs/tabs'
+    viewTabs: 'views/tabs/tabs',
+    viewTimeSignatureList: 'views/lists/timeSignatureList',
+    viewTimeSignatureListItem: 'views/lists/timeSignatureListItem'
+
   }
 });
 

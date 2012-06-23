@@ -23,3 +23,7 @@ end
 child @time_signatures => :time_signatures do
   attributes :id, :lower, :upper 
 end
+
+child @granularities => :granularities do
+  attributes :id, :name, :class_name 
+end

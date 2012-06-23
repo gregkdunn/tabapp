@@ -24,11 +24,8 @@ function($, _, Backbone, measureTemplate, measureEdit, measureShow){
       },
       initialize: function(){
         debug('measureView.init');	
-
-        MeasureEditView = new measureEdit({model: this.model, collection: this.collection, collections: this.collections});
-        MeasureShowView = new measureShow({model: this.model, collection: this.collection, collections: this.collections});
-
-        window.MeasureShowView = MeasureShowView;
+        MeasureEditView = new measureEdit({model: this.model, collection: this.collection, collections: this.options.collections});
+        MeasureShowView = new measureShow({model: this.model, collection: this.collection, collections: this.options.collections});
       },
       render: function(){
         debug('measureView.render');	
@@ -67,6 +64,8 @@ function($, _, Backbone, measureTemplate, measureEdit, measureShow){
         this.renderShow();      
       }
     });
+
+    window.MeasureShowView = MeasureShowView;
 
   return measuresView;
 });

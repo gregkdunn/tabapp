@@ -5,14 +5,15 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/lists/listitem.html'
+  'text!templates/lists/listItem.html'
 ], 
 function($, _, Backbone, listItemTemplate){
   "use strict";
 
-    ListItemView = Backbone.View.extend({
+  var listItemView = Backbone.View.extend({
       tagName: 'li',
       className: 'list_item',
+      template: listItemTemplate,
       events: {
           'click': 'onSelect'
       },
@@ -24,16 +25,18 @@ function($, _, Backbone, listItemTemplate){
   
       render: function() {
         debug('ListItem.render');
+        var data = this.model.toJSON(),
+            compiledTemplate = _.template( this.template, data );
         $(this.el)
-          .html(this.template(this.model.toJSON()));
+          .html(compiledTemplate);
         return this;
       },
       
-      onDelete :function() {
+      onSelect :function() {
         debug('ListItem.onSelect');
         this.model.collection.trigger('item:select', this.model);
       }
     });
 
-  return listView;
+  return listItemView;
 });

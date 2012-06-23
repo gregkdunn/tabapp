@@ -8,11 +8,13 @@ define([
   'text!templates/lists/list.html',
   'viewListItem'
 ], 
-function($, _, Backbone, listTemplate, listViewItem){
+function($, _, Backbone, listTemplate, listItemView){
   "use strict";
 
-   listView = Backbone.View.extend({
+  var ListItemView = listItemView,
+      listView = Backbone.View.extend({
       className: 'item_list',
+      template: listTemplate,
       events: {
 
       },      
@@ -25,37 +27,38 @@ function($, _, Backbone, listTemplate, listViewItem){
       
       render: function() {
         debug('listView.render');
-        var data = this.model.toJSON(),
+        var data = {},
             compiledTemplate;
 
         debug('data:', data);
         debugObject(data);
 
-        compiledTemplate = _.template( measureEditTemplate, data );
+        compiledTemplate = _.template( this.template, data );
 
 	      $(this.el)
 	        .empty()
 	        .append( compiledTemplate );
 
-	      this.rednerList();  
+	      this.renderList();  
+
+        return this;
       },
    
       renderList: function() {
         debug('listView.renderList');
-        var $list = $(this.el).find('.item_list'),
+        var $list = $(this.el),
             items = this.collection;
 
         $list.empty();
 
         if(items.length > 0) {         
           items.each(function(item) {
-            if(item.get('name').match(/\S/g)) {
-              var list_item = new listItemView({
-                model: item,
-                collection: items
-              });
-              $list.append(list_item.render().el);
-            }
+            console.log('item:', item);
+            var list_item = new ListItemView({
+              model: item,
+              collection: items
+            });
+            $list.append(list_item.render().el);
           });
         } else {
           $list.append('<li class="no_items">No Items available</li>');

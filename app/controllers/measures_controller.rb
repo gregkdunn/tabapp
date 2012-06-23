@@ -5,6 +5,7 @@ class MeasuresController < ApplicationController
     @accents = Accent.all
     @chords = Chord.all
     @fingers = Finger.all
+    @granularities = Granularity.all
     @instruments = Instrument.all
     @states = State.all
     @time_signatures = TimeSignature.all

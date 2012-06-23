@@ -5,6 +5,7 @@ define([
   'collectionAccents',
   'collectionChords',
   'collectionFingers',
+  'collectionGranularities',
   'collectionInstruments',
   'collectionMeasures',
   'collectionNotes',
@@ -14,7 +15,7 @@ define([
   'viewAccount',
   'viewMeasures',
   'viewTabs'
-], function($, _, Backbone, Accents, Chords, Fingers, Instruments, Measures, Notes, States, TimeSignatures, NavView, AccountView, MeasuresView, TabsView){
+], function($, _, Backbone, Accents, Chords, Fingers, Granularities, Instruments, Measures, Notes, States, TimeSignatures, NavView, AccountView, MeasuresView, TabsView){
   "use strict";
 
   var accountView, 
@@ -47,6 +48,7 @@ define([
             accents : new Accents(config.accents),
             chords : new Chords(config.chords),
             fingers : new Fingers(config.fingers),
+            granularities: new Granularities(config.granularities),
             instruments : new Instruments(config.instruments),
             measures : new Measures(config.measures),
             notes : new Notes(config.notes),

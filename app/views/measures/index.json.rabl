@@ -15,7 +15,6 @@ child @measures => :measures do
 	  attributes :id, :lower, :upper
 	end
 
-
 end
 
 child @accents => :accents do
@@ -28,6 +27,10 @@ end
 
 child @fingers => :fingers do
   attributes :id, :name, :symbol 
+end
+
+child @granularities => :granularities do
+  attributes :id, :name, :class_name 
 end
 
 child @instruments => :instruments do
