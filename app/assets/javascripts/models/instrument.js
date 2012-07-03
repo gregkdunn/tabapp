@@ -5,7 +5,7 @@ define([
 	var Instrument = Backbone.Model.extend({
 	    initialize: function() {
 	    	var data = this.get('data');
-	    	debug('instrument_data:' + data);    	
+	    	//console.log('instrument_data:' + data);    	
         if(data) {
 	    	  data = JSON.parse(data);
 	    	  this.set(data);

@@ -11,10 +11,10 @@ function($, _, Backbone, accountTemplate){
 
   var accountView = Backbone.View.extend({
     initialize: function(){
-      debug('accountView.init');	
+      //console.log('accountView.init');	
     },
     render: function(){
-      debug('accountView.render');	
+      //console.log('accountView.render');	
       var data = {};
       var compiledTemplate = _.template( accountTemplate, data );
 

@@ -15,10 +15,10 @@ function($, _, Backbone, measuresListTemplate, measureView){
 
     },
     initialize: function(){
-      debug('measuresListView.init');	
+      //console.log('measuresListView.init');	
     },
     render: function(){
-      debug('measuresListView.render');	
+      //console.log('measuresListView.render');	
       var data = {},
           compiledTemplate = _.template( measuresListTemplate, data );
 
@@ -31,15 +31,15 @@ function($, _, Backbone, measuresListTemplate, measureView){
       return this;
     },
     renderList: function() {
-      debug('measuresListView.renderList');
+      //console.log('measuresListView.renderList');
       var collections = this.options.collections,
           measures = collections.measures,
           container = $(this.el).find('.measuresListContent');
 
-      debug('measures.length: ' + measures.length);
+      //console.log('measures.length: ' + measures.length);
       
       measures.each(function(measure) {
-        debug('measure: ' + JSON.stringify(measure));
+        //console.log('measure: ' + JSON.stringify(measure));
         var view = new measureView({model: measure, collection: measures, collections: collections});
         container.append(view.render().el);
 

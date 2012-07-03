@@ -193,6 +193,9 @@ footer {
     .notes, .fingers {
       height: 45.2830189%; /*  96/212 */
     }
+    .fingers {
+      display: none;
+    }
     .notes {
       margin-bottom: 60%;
       .string {

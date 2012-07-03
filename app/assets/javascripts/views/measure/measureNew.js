@@ -12,7 +12,8 @@ function($, _, Backbone, measure, measureEdit){
 
   var measureNewView = measureEdit.extend({
     initialize: function(){
-      debug('measureNewView.init');
+      //console.log('measureNewView.init');
+      _.bindAll(this);
 
       window.measureNewView = this;
 
@@ -30,7 +31,7 @@ function($, _, Backbone, measure, measureEdit){
           bar_length = defaults.time_signature.upper * defaults.time_signature.lower,
           strings_length = defaults.instrument.strings.length;
 
-      debug('strings_length:', strings_length);
+      //console.log('strings_length:', strings_length);
 
       defaults.strings = strings_length;
       defaults.bars = bar_length;
@@ -47,9 +48,12 @@ function($, _, Backbone, measure, measureEdit){
 
       new_measure = new measure(defaults);
 
-      debug('new_measure: ' + JSON.stringify(new_measure));
+      //console.log('new_measure: ' + JSON.stringify(new_measure));
 
       this.model = new_measure;
+
+
+      this.initComponents();
     }
   });
 

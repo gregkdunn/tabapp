@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.2'
 gem 'sqlite3'
 gem 'rails-backbone', '~> 0.7.0'
-gem 'jquery-rails'
+gem "jquery-rails", "~> 2.0.2"
 gem 'ejs'
 gem 'flutie', '~> 1.3.2'
 gem 'clearance', '~> 0.13.0'
@@ -14,7 +14,7 @@ gem 'backbone-support'
 gem 'haml', '~> 3.1.4'
 gem 'haml-rails', '~> 0.3.4'
 gem 'sass', '~> 3.1.15'
-gem 'requirejs-rails'
+gem "requirejs-rails", "~> 0.9.0"
 
 gem 'rabl'
 gem 'gon', '~> 3.0.0'

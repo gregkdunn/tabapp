@@ -14,24 +14,27 @@ function($, _, Backbone, listTemplate, listItemView){
   var ListItemView = listItemView,
       listView = Backbone.View.extend({
       className: 'item_list',
+      ListItemView: ListItemView,
       template: listTemplate,
       events: {
-
+        'click .field': 'displayList',
+        'keyup': 'checkInput',
+        'click .list li': 'setField' 
       },      
       
       initialize: function() {
-        debug('listView.initialize');
+        //console.log('listView.initialize');
         _.bindAll(this);
         this.collection.bind('change', this.renderList);
       },
       
       render: function() {
-        debug('listView.render');
+        //console.log('listView.render');
         var data = {},
             compiledTemplate;
 
-        debug('data:', data);
-        debugObject(data);
+        //console.log('data:', data);
+        //console.log(data);
 
         compiledTemplate = _.template( this.template, data );
 
@@ -45,16 +48,17 @@ function($, _, Backbone, listTemplate, listItemView){
       },
    
       renderList: function() {
-        debug('listView.renderList');
-        var $list = $(this.el),
+        //console.log('listView.renderList');
+        var scoped_this = this,
+            $list = $(this.el).find('ul'),
             items = this.collection;
 
         $list.empty();
 
         if(items.length > 0) {         
           items.each(function(item) {
-            console.log('item:', item);
-            var list_item = new ListItemView({
+            //console.log('item:', item);
+            var list_item = new scoped_this.ListItemView({
               model: item,
               collection: items
             });
@@ -63,8 +67,33 @@ function($, _, Backbone, listTemplate, listItemView){
         } else {
           $list.append('<li class="no_items">No Items available</li>');
         }    
-    
-      }
+      },
+
+      displayList: function() {
+        $(this.el).find('.list').show();
+      },
+
+      hideList: function() {
+        $(this.el).find('.list').hide();
+      },
+
+      checkInput: function(event) {
+        if(event.keyCode == 27) {
+          this.hideList();
+        };
+      },
+
+      setField: function(event) {
+        console.log('setField event', event);
+        $(this.el)
+          .find('.field')
+            .val(event.target.innerHTML)
+          .css({
+            'background':'#fff',
+            'color':'#333'
+          });
+        this.hideList();  
+      } 
        
     });
 

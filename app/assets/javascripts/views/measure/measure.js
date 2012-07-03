@@ -5,13 +5,13 @@ define([
   'underscore',
   'backbone',
   'text!templates/measure/measure.html',
-  'viewMeasureEdit',
+  'viewMeasureNew',
   'viewMeasureShow'
 ], 
-function($, _, Backbone, measureTemplate, measureEdit, measureShow){
+function($, _, Backbone, measureTemplate, measureNew, measureShow){
   "use strict";
 
-  var MeasureEditView, 
+  var MeasureNewView, 
       MeasureShowView, 
 
       measuresView = Backbone.View.extend({
@@ -23,12 +23,12 @@ function($, _, Backbone, measureTemplate, measureEdit, measureShow){
         'click .list_measure': 'showShow'
       },
       initialize: function(){
-        debug('measureView.init');	
-        MeasureEditView = new measureEdit({model: this.model, collection: this.collection, collections: this.options.collections});
+        //console.log('measureView.init');	
+        MeasureNewView = new measureNew({model: this.model, collection: this.collection, collections: this.options.collections});
         MeasureShowView = new measureShow({model: this.model, collection: this.collection, collections: this.options.collections});
       },
       render: function(){
-        debug('measureView.render');	
+        //console.log('measureView.render');	
         var data = {},
             compiledTemplate = _.template( measureTemplate, data );
 
@@ -41,26 +41,26 @@ function($, _, Backbone, measureTemplate, measureEdit, measureShow){
         return this;
       },
       renderEdit: function() {
-        debug('measureView.renderEdit');
-        this.renderState(MeasureEditView.render().el);
+        //console.log('measureView.renderEdit');
+        this.renderState(MeasureNewView.render().el);
       },      
       renderShow: function() {
-        debug('measureView.renderShow');
+        //console.log('measureView.renderShow');
         this.renderState(MeasureShowView.render().el);
       },
       renderState:function(state){
-        debug('measureView.renderState');
+        //console.log('measureView.renderState');
         $(this.el).find(this.containers.viewstack)
           .empty()
           .append(state);
         this.delegateEvents(this.events);    
       },
       showEdit: function() {
-        debug('measuresView.showEdit');
+        //console.log('measuresView.showEdit');
         this.renderEdit();
       },
       showShow:function() {
-        debug('measureView.showShow');
+        //console.log('measureView.showShow');
         this.renderShow();      
       }
     });

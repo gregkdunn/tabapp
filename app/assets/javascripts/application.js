@@ -2,17 +2,14 @@
 //require file paths
 require.config({
   paths: {
-    jquery: 'libs/jquery-1.7.1',
-    underscore: 'libs/underscore',
     backbone: 'libs/backbone',
-    text: 'libs/text',
-    searchableCollection: 'collections/searchable',
-    seeder: 'seeder',
+    jquery: 'libs/jquery-1.7.1',
     knobify: 'libs/jquery.knob-1.1.1',
+    seeder: 'seeder',
+    text: 'libs/text',   
+    underscore: 'libs/underscore',
 
     router: 'routers/router',
-
-    viewNav: 'views/layouts/nav',
 
     modelAccent: 'models/accent',
     modelChord: 'models/chord',
@@ -33,6 +30,7 @@ require.config({
     collectionNotes: 'collections/notes',
     collectionStates: 'collections/states',
     collectionTimeSignatures: 'collections/timeSignatures',
+    searchableCollection: 'collections/searchable',
 
     viewAccount: 'views/account/account',
     viewInputOverlay: 'views/components/inputOverlay',
@@ -45,6 +43,7 @@ require.config({
     viewMeasures: 'views/measures/measures',
     viewMeasuresList: 'views/measures/measuresList',
     viewMeasuresEdit: 'views/measures/measuresEdit',
+    viewNav: 'views/layouts/nav',
     viewTabs: 'views/tabs/tabs',
     viewTimeSignatureList: 'views/lists/timeSignatureList',
     viewTimeSignatureListItem: 'views/lists/timeSignatureListItem'
@@ -52,45 +51,6 @@ require.config({
   }
 });
 
-//debugging function
-var debug = function(what){
-      var isDebug = (isDebug)? isDebug : true;
-      var whatString ="";
-      if(isDebug){
-        for (var i = 0; i < arguments.length; i++){
-          whatString += arguments[i] + " ";
-        }
-        if (window.console && window.console.log){
-          return window.console.log('app: ' + whatString);
-        } else if(ieAlert){
-          return alert(whatString);
-        }  
-      }
-    },
-    
-    debugObject = function(obj){
-      var isDebug = isDebug | true,
-          ieAlert = ieAlert | false,
-          output = '',
-          property;
-          
-      if(isDebug){
-        if (window.console && window.console.dir){
-          return window.console.dir(obj);
-        } else if(window.console && window.console.log) {
-          for (property in obj) {
-            if (obj.hasOwnProperty(property)) {
-                output += '[' + property + ' : ' + obj[property]+'] \n';
-            }
-          }
-          return window.console.log(output);   
-        } else if(ieAlert){
-          for (property in obj) {
-            if (obj.hasOwnProperty(property)) {
-                output += '[' + property + ' : ' + obj[property]+'] \n';
-            }
-          }
-          return alert(output);
-        }   
-      } 
-    };
+define(['jquery', 'underscore', 'backbone', 'router'], function($, _, Backbone, Router) {
+  Router.initialize();
+});

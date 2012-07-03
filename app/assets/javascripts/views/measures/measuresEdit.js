@@ -15,10 +15,10 @@ function($, _, Backbone, measuresEditTemplate, measureNew){
 
     },
     initialize: function(){
-      debug('measuresEditView.init');	
+      //console.log('measuresEditView.init');	
     },
     render: function(){
-      debug('measuresEditView.render');	
+      //console.log('measuresEditView.render');	
       var data = {},
           compiledTemplate = _.template( measuresEditTemplate, data );
 
@@ -31,7 +31,7 @@ function($, _, Backbone, measuresEditTemplate, measureNew){
       return this;
     },
     renderEdit: function() {
-      debug('measuresEditView.renderEdit');
+      //console.log('measuresEditView.renderEdit');
       var collections = this.options.collections,
           measures = collections.measures,
           container = $(this.el).find('.measuresEditContent'),

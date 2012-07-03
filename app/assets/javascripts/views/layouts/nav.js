@@ -16,11 +16,11 @@ function($, _, Backbone, navTemplate){
         'click .tabs_page': 'showTabs'
       },
       initialize: function(){
-        debug('navView.init');	
+        //console.log('navView.init');	
 
       },
       render: function(){
-        debug('navView.render');	
+        //console.log('navView.render');	
         var data = {},
             compiledTemplate = _.template( navTemplate, data );
 
@@ -29,19 +29,19 @@ function($, _, Backbone, navTemplate){
         return this;
       },
       showAccount: function() {
-        debug('navView.showAccount');
+        //console.log('navView.showAccount');
         this.show('account');
       },      
       showMeasures: function() {
-        debug('navView.showMeasures');
+        //console.log('navView.showMeasures');
         this.show('measures');
       },
       showTabs:function() {
-        debug('navView.showTabs');
+        //console.log('navView.showTabs');
         this.show('tabs');
       },
       show: function(page) {
-        debug('navView.show');
+        //console.log('navView.show');
         this.options.router.trigger('show', page);
       }
 

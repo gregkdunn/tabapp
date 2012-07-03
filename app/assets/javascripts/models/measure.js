@@ -6,7 +6,7 @@ define([
     initialize: function() {
     	var data = this.get('data');
 
-    	//debug('data:' + data);
+    	////console.log('data:' + data);
     	
         if(data) {
     	  data = JSON.parse(data);

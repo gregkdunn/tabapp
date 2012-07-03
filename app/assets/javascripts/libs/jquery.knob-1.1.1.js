@@ -127,7 +127,7 @@ $(function() {
                                     );
 
                         var c = $('<canvas width="'+opt.width+'" height="'+opt.width+'"></canvas>')
-                            ,wd = $('<div style=width:'+opt.width+'px;display:inline;"></div>')
+                            ,wd = $('<div style=width:'+opt.width+'px;display:block;"></div>')
                             ,k;
 
                         $this.wrap( wd ).before( c );

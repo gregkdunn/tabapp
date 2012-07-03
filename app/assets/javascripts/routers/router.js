@@ -41,7 +41,7 @@ define([
       '*actions': 'defaultAction'
     },
     initialize: function() {
-      debug('AppRouter.initialize');  
+      //console.log('AppRouter.initialize');  
 
       //initModels
       var collections = {
@@ -76,41 +76,41 @@ define([
       this.show('measures');
     },
     showAccount: function() {
-      debug('AppRouter.showAccount'); 
+      //console.log('AppRouter.showAccount'); 
       this.showPage(accountView);
     },   
     showMeasures: function() {
-      debug('AppRouter.showMeasures'); 
+      //console.log('AppRouter.showMeasures'); 
       this.showPage(measuresView);
     },
     showTabs: function() {
-      debug('AppRouter.showTabs'); 
+      //console.log('AppRouter.showTabs'); 
       this.showPage(tabsView);
     },
     showPage: function(page) {
-      debug('AppRouter.showPage'); 
+      //console.log('AppRouter.showPage'); 
       this.containers.body
         .empty()
         .append(page.render().el); 
     },
     show: function(page) {
-      debug('AppRouter.show:' + page); 
+      //console.log('AppRouter.show:' + page); 
       this.navigate(page, true);
     },
      defaultAction: function(actions) {
       // We have no matching route, lets just log what the URL was
-      debug('AppRouter.defaultAction'); 
-      debug('No route:', actions);
+      //console.log('AppRouter.defaultAction'); 
+      //console.log('No route:', actions);
     }
   });
 
   var initialize = function() {
-        debug('initialize');
+        //console.log('initialize');
         var app_router = new AppRouter;
         Backbone.history.start();
       },
       configData = function() {
-        debug('config_data');
+        //console.log('config_data');
         var $config = $('.config'),
             bootstrap = {},
             models = ['accents', 'chords', 'fingers', 'instruments', 'measures', 'notes', 'states', 'timesignatures'];

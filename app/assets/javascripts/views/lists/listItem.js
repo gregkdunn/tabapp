@@ -19,12 +19,12 @@ function($, _, Backbone, listItemTemplate){
       },
 
       initialize: function() {
-        debug('ListItem.initialize');
+        //console.log('ListItem.initialize');
         _.bindAll(this);
       },
   
       render: function() {
-        debug('ListItem.render');
+        //console.log('ListItem.render');
         var data = this.model.toJSON(),
             compiledTemplate = _.template( this.template, data );
         $(this.el)
@@ -33,7 +33,7 @@ function($, _, Backbone, listItemTemplate){
       },
       
       onSelect :function() {
-        debug('ListItem.onSelect');
+        //console.log('ListItem.onSelect');
         this.model.collection.trigger('item:select', this.model);
       }
     });

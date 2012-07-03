@@ -9,10 +9,10 @@ define([
 function($, _, Backbone, tabsTemplate){
   var tabsView = Backbone.View.extend({
     initialize: function(){
-      debug('tabsView.init');	
+      //console.log('tabsView.init');	
     },
     render: function(){
-      debug('tabsView.render');	
+      //console.log('tabsView.render');	
       var data = {};
       var compiledTemplate = _.template( tabsTemplate, data );
 

@@ -22,12 +22,12 @@
               totals =['first_total','second_total','third_total'];
 
           _.each(ids, function(id, index){
-            debug('getSeedData.elm: ' + id);
+            //console.log('getSeedData.elm: ' + id);
             getData('ids', index, id);
           });
 
           _.each(totals, function(total, index){
-            debug('getSeedData.elm: ' + total);
+            //console.log('getSeedData.elm: ' + total);
             getData('totals', index, total);
           });
 
@@ -35,25 +35,25 @@
         },
 
         getData = function(field, index, elm) {
-          debug('getData');
+          //console.log('getData');
           config[field][index] = $('.' + elm).val();
-          debug('getData.elm:' + elm);
-          debug('getData.config:' + config[field][index]);
+          //console.log('getData.elm:' + elm);
+          //console.log('getData.config:' + config[field][index]);
         },
 
         createSeedData = function() {
           for(config.counts[0]; config.counts[0] <= config.totals[0]; config.counts[0]++) {
-            debug('first_count:' + config.counts[0]);
+            //console.log('first_count:' + config.counts[0]);
             
             config.counts[1] = 1;
             for(config.counts[1]; config.counts[1] <= config.totals[1]; config.counts[1]++) {
-              debug('second_count:' + config.counts[1]);
+              //console.log('second_count:' + config.counts[1]);
 
               config.counts[2] = 1;
               for(config.counts[2]; config.counts[2] <= config.totals[2]; config.counts[2]++) {
-                debug('third_count:' + config.counts[2]);
+                //console.log('third_count:' + config.counts[2]);
                 var seed_line = createSeedLine();
-                debug('seed_line:' + seed_line);
+                //console.log('seed_line:' + seed_line);
 
                 config.id_count++;
                 seed_data += seed_line; 
@@ -62,7 +62,7 @@
             }
           }
           resetCounts();
-          debug('seed_data:' + seed_data);
+          //console.log('seed_data:' + seed_data);
 
           return true;
         },
@@ -90,7 +90,7 @@
           $('.seed_data')
             .empty()
             .html(seed_data);
-          debug('seed_data:' + seed_data);
+          //console.log('seed_data:' + seed_data);
         },
 
         resetCounts = function() {

@@ -67,3 +67,26 @@ $base_font_size: $card_height * .083333333;
     width: $base_font_size * .8;
   }
 }
+/*
+.input_overlay {
+  background-color: #aaa; 
+  height: $card_height * .4;
+  padding: $card_height * .03;
+  width: $card_width * .3;
+  h1 {
+    font-size: $base_font_size * .8;
+    margin: 0 auto;
+    text-align: center;
+    width: $card_width * .27;
+  }
+  div {
+    margin: 0 auto;
+  }
+  p {
+    font-size: $base_font_size * .5;
+    margin: 0 auto;
+    text-align: center;
+    width: $card_width * .27;
+  }
+}
+*/

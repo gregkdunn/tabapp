@@ -23,7 +23,7 @@ function($, _, Backbone, measuresTemplate, measuresEdit, measuresList){
         'click .list_measures': 'showList'
       },
       initialize: function(){
-        debug('measuresView.init');	
+        //console.log('measuresView.init');	
 
         this.setCollections();
 
@@ -34,7 +34,7 @@ function($, _, Backbone, measuresTemplate, measuresEdit, measuresList){
         window.MeasuresListView = MeasuresListView;
       },
       render: function(){
-        debug('measuresView.render');	
+        //console.log('measuresView.render');	
         var data = {},
             compiledTemplate = _.template( measuresTemplate, data );
 
@@ -47,26 +47,26 @@ function($, _, Backbone, measuresTemplate, measuresEdit, measuresList){
         return this;
       },
       renderEdit: function() {
-        debug('measuresView.renderEdit');
+        //console.log('measuresView.renderEdit');
         this.renderState(MeasuresEditView.render().el);
       },      
       renderList: function() {
-        debug('measuresView.renderList');
+        //console.log('measuresView.renderList');
         this.renderState(MeasuresListView.render().el);
       },
       renderState:function(state){
-        debug('measuresView.renderState');
+        //console.log('measuresView.renderState');
         $(this.el).find(this.containers.viewstack)
           .empty()
           .append(state);
         this.delegateEvents(this.events);    
       },
       showCreate: function() {
-        debug('measuresView.createMeasure');
+        //console.log('measuresView.createMeasure');
         this.renderEdit();
       },
       showList:function() {
-        debug('measuresView.listMeasures');
+        //console.log('measuresView.listMeasures');
         this.renderList();      
       },
       setCollections:function(){

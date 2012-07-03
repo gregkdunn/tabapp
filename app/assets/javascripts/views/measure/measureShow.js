@@ -15,14 +15,14 @@ function($, _, Backbone, measureShowTemplate){
 
     },
     initialize: function(){
-      debug('measureShowView.init');	
+      //console.log('measureShowView.init');	
     },
     render: function(){
-      debug('measureShowView.render');	
+      //console.log('measureShowView.render');	
       var data = this.model.toJSON(),
           compiledTemplate;
 
-      debug("data: " + JSON.stringify(data));
+      //console.log("data: " + JSON.stringify(data));
       compiledTemplate = _.template( measureShowTemplate, data );
 
       $(this.el)
@@ -34,7 +34,7 @@ function($, _, Backbone, measureShowTemplate){
       return this;
     },
     renderShow: function() {
-      debug('measureShowView.renderShow');
+      //console.log('measureShowView.renderShow');
 
     }
   });
