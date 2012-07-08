@@ -64,6 +64,9 @@ function($, _, Backbone, listTemplate, listItemView){
             });
             $list.append(list_item.render().el);
           });
+
+          this.setInitialValue();
+
         } else {
           $list.append('<li class="no_items">No Items available</li>');
         }    
@@ -83,15 +86,17 @@ function($, _, Backbone, listTemplate, listItemView){
         };
       },
 
+      setInitialValue: function() {
+        $(this.el)
+          .find('.field')
+            .val(this.options.initial_value)
+      },
+
       setField: function(event) {
         console.log('setField event', event);
         $(this.el)
           .find('.field')
-            .val(event.target.innerHTML)
-          .css({
-            'background':'#fff',
-            'color':'#333'
-          });
+            .val(event.target.innerHTML);
         this.hideList();  
       } 
        

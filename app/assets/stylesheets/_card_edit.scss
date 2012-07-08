@@ -14,17 +14,28 @@ $base_font_size: $card_height * .083333333;
   }
 
   .bar input {
-    background-color: #eee; 
+    background-color: #B8DDE3; 
     border: 1px solid transparent; 
     font-family: 'Myriad Pro', 'Segoe UI', Helvetica, Arial, sans-serif;
     font-size: $base_font_size * .8;
     font-weight: bold;
+    text-align: center;
     text-transform: uppercase;
     height: 100%;
+    opacity: .6;
     width: 100%;
     &:focus {
       background-color: #fff; 
       border: 1px solid #ddd; 
+      opacity: 1;
+    }
+    &.invalid {
+      background-color: #e1bfbf; 
+      border: 1px solid #e1bfbf; 
+    }
+    &.valid {
+      background-color: #bfe1c9;
+      border: 1px solid #bfe1c9; 
     }
   }
   .chord,
@@ -67,6 +78,11 @@ $base_font_size: $card_height * .083333333;
     width: $base_font_size * .8;
   }
 }
+
+.save {
+  cursor: pointer;
+}
+
 /*
 .input_overlay {
   background-color: #aaa; 

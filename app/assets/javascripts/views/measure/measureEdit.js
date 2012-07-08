@@ -40,6 +40,8 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
          'keyup .chord': 'validateChord',
          'keyup .finger': 'validateFinger',
          'keyup .fret': 'validateFret',
+         //save
+         'click .save': 'saveCards'
         },
         initialize: function(){
           //console.log('measureEditView.init');	
@@ -48,7 +50,6 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
           window.measureEdit = this;
 
           this.initComponents();
-
         },
 
         initComponents: function() {
@@ -60,11 +61,11 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
           OverlayView = new inputOverlayView({model: this.model, collections: this.options.collections});
             
           //console.log('instruments:', instruments);  
-          InstrumentList = new listView({collection: instruments});
+          InstrumentList = new listView({collection: instruments, initial_value: this.model.get('instrument').name });
 
           //console.log('time_signatures:', time_signatures);  
-          TimeSignatureList = new timeSignatureListView({collection: time_signatures});
-          
+          TimeSignatureList = new timeSignatureListView({collection: time_signatures, initial_value: this.model.get('time_signature').upper + '/' + this.model.get('time_signature').lower});
+          ''
           ////console.log('granularity:', granularities);            
           //GranularityList = new listView({collection: granularities});
         
@@ -89,6 +90,7 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
           this.renderLists();
           this.renderCards();
           //this.renderOverlay();
+
           return this;
         },
 
@@ -136,6 +138,7 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
             } 
 
           _.each(data, function(beat) {
+            //console.log('beat:', beat);
             var compiled_bar = _.template( barTemplate, beat );
             container.append(compiled_bar);
           })    
@@ -178,9 +181,9 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
             } 
 
             _.each(beat.pos, function(strng) {
-              strng = _.extend(strng, {bar_no: i + 1});
-              //console.log('strng:');
-              //console.log(strng);
+              var bar_no = i + 1;
+              strng = _.extend(strng, {"bar_no": bar_no});
+              //console.log('strng:', strng);
               var compiled_note = _.template(noteTemplate, strng),
                   compiled_finger = _.template(fingerTemplate, strng);
               note_container.append(compiled_note);
@@ -293,7 +296,7 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
         },
         clearInput: function() {
           //console.log('measureEditView.clearField');
-          var current_field = all_fields.filter(':focus');
+          var current_field = $(this.el).find('input:focus');
           current_field.val('');  
         },
         moveField: function(direction) {
@@ -412,6 +415,7 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
         validateChord: function(event) {
           //console.log('measureEditView.validateChord');
           var testArray = ['Ab', 'A', 'A#','Bb', 'B', 'B#', 'Cb', 'C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'E#', 'Fb', 'F', 'F#', 'Gb', 'G', 'G#'];
+
           this.validateAgainstArray(event, testArray);
         },
         validateFinger: function(event) {
@@ -435,8 +439,9 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
           //console.log('measureEditView.validate');
           //console.log('event:', event);
           //console.log('testArray:', testArray);
+          //onkeyup="this.value = this.value.toUpperCase();"
 
-          var input = event.target.value,
+          var input = event.target.value.toUpperCase(),
               match = false;
 
           _.each(testArray, function(item) {
@@ -445,17 +450,33 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
             }
           });
           
+          if(input.length == 0) {
+            this.displayNoEntry(event.target);
+            this.displaySave();
+            return;
+          }
+
           if(match) {
+            $(event.target).val(input);
             this.displayValidEntry(event.target);
           } else {
             this.displayInvalidEntry(event.target);
           }
+
+          this.displaySave();
+        },
+        displayNoEntry: function(field) {
+          $(field)
+            .removeClass('invalid')
+            .removeClass('valid'); 
         },
         displayValidEntry: function(field) {
           //console.log('measureEditView.displayValidEntry');
           $(field)
             .removeClass('invalid')
             .addClass('valid');
+
+          this.parseEntry(field);  
         },    
         displayInvalidEntry: function(field) {
           //console.log('measureEditView.displayInvalidEntry');
@@ -464,18 +485,150 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
             .addClass('invalid');
         },
 
+        parseEntry:function(field) {
+          //console.log('measureEditView.parseEntry');
+          //console.log(field);
+          var $field = $(field),
+              field_name = $field.attr('name'),
+              field_val = $field.val(),
+              field_name_array = field_name.split('_'),
+              attr = field_name_array[0],
+              bar = field_name_array[2] - 1,
+              strng;
+
+          //console.log(field_name, field_val);    
+          //console.log('field_name_array', field_name_array);
+
+          if(field_name_array.length == 5) {
+              strng = field_name_array[4] - 1;
+          }  
+
+          //console.log(attr, bar, strng);
+
+          this.saveEntry(field_val, attr, bar, strng);
+        },
+
+        saveEntry: function(field_val, attr, bar_num, strng) {
+          //console.log('measureEditView.saveEntry');
+          //console.log('this.model', this.model);
+
+          var positions = this.model.get('positions');
+
+          //console.log('positions', positions);
+
+          if(attr === 'chord') {
+            positions.bar[bar_num].chord = field_val;
+          } else {
+            //console.log('positions.bar', positions.bar);
+            //console.log('positions.bar['+ bar_num +']', positions.bar[bar_num]);
+            //console.log('positions.bar['+ bar_num +'].pos', positions.bar[bar_num].pos);
+            //console.log('positions.bar['+ bar_num +'].pos['+ strng +']', positions.bar[bar_num].pos[strng]);
+            //console.log('positions.bar['+ bar_num +'].pos['+ strng +']['+ attr +']', positions.bar[bar_num].pos[strng][attr]);
+            positions.bar[bar_num].pos[strng][attr] = field_val;
+          }
+          this.model.set({'positions': positions});
+          this.model.trigger("change:positions");
+          //console.log('positions:set:', this.model.get('positions'));
+        },
+
+        displaySave: function() {
+          var $save = $(this.el).find('.save'),
+              all_inputs = $(this.el).find('input'),
+              valid_inputs =  all_inputs.filter('.valid');
+          if( valid_inputs.length > 0) {
+            $save.removeClass('hide');
+          } else {
+            $save.addClass('hide');
+          }
+        },
+
+        validateCard: function(card) {
+          console.log('measureEditView.validateCard');
+          var all_inputs = card.find('input'),
+              valid_inputs =  all_inputs.filter('.valid'),
+              invalid_inputs = all_inputs.filter('.invalid');
+          console.log('invalid_inputs.length', invalid_inputs.length);
+          console.log('valid_inputs.length', valid_inputs.length);
+
+
+          if(invalid_inputs.length == 0 && valid_inputs.length > 0) {
+            console.log('true');
+            return true;
+          } else {
+            console.log('false');
+            return false;
+          }
+        },
+
+        saveCard: function(card) {
+          console.log('measureEditView.saveCard');
+          if(this.validateCard(card)) {
+            var instrument_id = this.model.get('instrument').id,
+                time_signature_id = this.model.get('time_signature').id,
+                chord_id = this.options.collections.chords.search(this.model.get('positions').bar[0].chord)._wrapped[0].id,
+                state_id = 3, //Published
+                data = {};
+            data.strings = this.model.get('strings');
+            data.bars = this.model.get('bars');
+            data.positions = this.model.get('positions');//this.purgeData(this.model.get('positions'));
+            data = JSON.stringify(data);
+
+            this.model.set({'instrument_id': instrument_id, 'time_signature_id': time_signature_id, 'state_id': state_id, 'chord_id': chord_id, 'data': data});
+
+            this.model.save();
+          }
+        },
+
+        purgeData: function(data) {
+          console.log('measureEditView.purgeData');
+          console.log('full_data:', data);
+          var filtered_bars = [];
+          filtered_bars = _.filter(data.bar, function(bar){
+            console.log('filter_bar');
+            var filtered_strings = [],
+                has_bar_data = false;
+            
+            if (bar.chord) {
+              has_bar_data = true;
+            }
+            
+            filtered_strings = _.filter(bar.pos, function(strng) {
+              console.log('filter_string');
+              var has_strng_data = false;
+              if (strng.accent || strng.fret || strng.finger) {
+                has_bar_data = true;
+                has_strng_data = true;
+              } else {
+                has_strng_data = false;
+              }
+              console.log('has_strng_data',has_strng_data);
+              return has_strng_data;
+            });
+
+            bar.pos = $.extend(true, {}, filtered_strings);
+
+            console.log('has_bar_data', has_bar_data);
+            return has_bar_data;
+          });
+
+          console.log('filtered_data:', data);
+          return data;
+        },
+
+        saveCards: function(event) {
+          console.log('measureEditView.saveCards');
+          // loop through visible cards and save
+          this.saveCard($(this.el));
+
+        },
+
         //update template         
         updateInstrument: function(instrument) {
           //console.log('measureEditView.updateInstrument');
           //console.log('instrument', instrument);
-
           this.model.set('instrument', instrument.toJSON());
           this.model.set('strings', instrument.get('strings').length);
-
           //console.log('this.model', this.model);
-
-
-
         },
         updateTimeSignature: function(time_signature) {
           //console.log('measureEditView.updateTimeSignature');

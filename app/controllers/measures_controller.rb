@@ -24,7 +24,7 @@ class MeasuresController < ApplicationController
 
   def create
     data = params[:measure]
-    @measure = Measure.new()
+    @measure = Measure.new(data)
 
     #encrypt attributes and test against saved measures
 

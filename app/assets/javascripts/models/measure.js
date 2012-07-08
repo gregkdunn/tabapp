@@ -3,6 +3,7 @@ define([
   "use strict";
   
 	var Measure = Backbone.Model.extend({
+    urlRoot: '/measures',    
     initialize: function() {
     	var data = this.get('data');
 

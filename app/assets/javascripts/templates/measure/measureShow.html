@@ -32,7 +32,7 @@
 
         <div class="fingers">
         <% _.each(bar_pos.pos, function(string) { %>
-          <div class="string string_pos_<%= string.no %> clearfix">
+          <div class="string string_pos_<%= string.no %> <% if(string.hasOwnProperty('finger') && !string.finger){ %>hide<% } %> clearfix">
             <% if(string.hasOwnProperty('finger')) { %>
               <div class="finger"><%= string.finger %></div>
             <% } %>
