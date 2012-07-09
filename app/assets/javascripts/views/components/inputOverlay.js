@@ -28,6 +28,8 @@ function($, _, Backbone, overlayTemplate, knobify){
       initialize: function() {
         //console.log('overlayView.initialize');
         _.bindAll(this);
+      
+        this.on('overlay:type', this.displayType);
       },
       
       render: function() {
@@ -44,7 +46,7 @@ function($, _, Backbone, overlayTemplate, knobify){
 	        .empty()
 	        .append( compiledTemplate );
 
-        this.renderKnob();  
+        //this.renderKnob();  
 
         return this;
       },
@@ -59,6 +61,35 @@ function($, _, Backbone, overlayTemplate, knobify){
         ////console.log('overlay.options.collections:', this.options.collections);
         ////console.log('instruments:', instrument);
         $(this.el).find('input').knob(this.knob_options);
+
+      },
+
+      displayType: function(overlay_type) {
+        var header = $(this.el).find('h1'),
+            copy = $(this.el).find('p'),
+            copy_text = '';
+
+        header.html(overlay_type);
+
+        switch(overlay_type) {
+          case 'chord':
+            copy_text = 'Gb G G#...';
+            break;
+          case 'fret':
+            copy_text = '0 1 2 3...';          
+            break;
+          case 'accent':
+            copy_text = '~ - / \\ *';          
+            break;
+          case 'finger':
+            copy_text = 'T I M R P';          
+            break;    
+          default:
+            copy_text = 'shits gone wrong... back away slowly.';          
+            break;       
+        }
+
+        copy.html(copy_text);
 
       }
        

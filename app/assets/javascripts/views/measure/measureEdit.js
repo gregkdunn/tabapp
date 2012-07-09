@@ -34,7 +34,8 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
          'keyup': 'checkKeyPressInput',
          //'mousewheel': 'checkMouseScroll',
          //overlay
-         'focus input': 'addOverlay',
+         'focus .card_edit input': 'addOverlay',
+         'blur .card_edit input': 'removeOverlay',
          //validations
          'keyup .accent': 'validateAccent',
          'keyup .chord': 'validateChord',
@@ -89,7 +90,7 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
           
           this.renderLists();
           this.renderCards();
-          //this.renderOverlay();
+          this.renderOverlay();
 
           return this;
         },
@@ -132,7 +133,7 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
                   i,
                   default_bar;
               for(i = 0; i < add_bars; i++){
-                default_bar = {no: i+data_length+1, chord: '', pos: []};;
+                default_bar = {no: i+data_length+1, chord: '', pos: []};
                 data.push(default_bar);
               }
             } 
@@ -392,6 +393,7 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
           //console.log('new_field',  new_field.attr('name')); 
           //console.log(new_field);
           $(new_field).focus();
+
         },
         moveBar: function(delta){
           //console.log('measureEditView.moveBar: ' + delta);
@@ -403,9 +405,34 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
               
         },
         addOverlay:function(event) {
-          //console.log('measureEditView.addOverlay');
+          console.log('measureEditView.addOverlay');
+          var $overlay = $(this.el).find('.input_overlay'),
+              overlay_height = $overlay.height(),
+              overlay_width = $overlay.width(),
+              $target = $(event.target),
+              target_height = $target.height(),
+              target_width = $target.width(),
+              target_offset = $target.offset(),
+              position_left = target_offset.left + target_width + 3,
+              position_top = target_offset.top - 2,
+              target_type = $target.attr('name').split('_')[0];
 
+          console.log('target_type', target_type);    
+
+          $overlay
+            .css({'left': position_left, 'top': position_top})
+            .removeClass('hide');
+
+          OverlayView.trigger('overlay:type', target_type);            
         },
+        removeOverlay: function(event) {
+          var $overlay = $(this.el).find('.input_overlay'),
+              $focus = $(this.el).find('input:focus');
+          if(!focus) {
+            $overlay.addClass('hide');
+          }  
+        },
+
         validateAccent: function(event) {
           //console.log('measureEditView.validateAccent');
           //console.log('event:', event);
@@ -576,6 +603,8 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
             this.model.set({'instrument_id': instrument_id, 'time_signature_id': time_signature_id, 'state_id': state_id, 'chord_id': chord_id, 'data': data});
 
             this.model.save();
+
+            //trigger event card:saved
           }
         },
 

@@ -63,6 +63,7 @@ $base_font_size: $card_height * .083333333;
 
   .fret, 
   .fret input {
+    clear:both;
     font-size: $base_font_size;
     height: $base_font_size * .9;
     width: $base_font_size * .8;
@@ -83,26 +84,27 @@ $base_font_size: $card_height * .083333333;
   cursor: pointer;
 }
 
-/*
+
 .input_overlay {
   background-color: #aaa; 
-  height: $card_height * .4;
-  padding: $card_height * .03;
-  width: $card_width * .3;
+  //height: $card_height * .15;//.4;
+  padding: $card_height * .015 $card_height * .03 $card_height * .008;
+  position: absolute;
+  width: $card_width * .13;//.3;
+  z-index: 1000;
   h1 {
-    font-size: $base_font_size * .8;
-    margin: 0 auto;
-    text-align: center;
-    width: $card_width * .27;
+    font-size: $base_font_size * .5;
+    margin: 0;
+    text-transform: capitalize;
   }
   div {
     margin: 0 auto;
   }
+  input {
+    display: none;
+  }
   p {
-    font-size: $base_font_size * .5;
-    margin: 0 auto;
-    text-align: center;
-    width: $card_width * .27;
+    font-size: $base_font_size * .4.5;
+    margin: 0;
   }
 }
-*/
