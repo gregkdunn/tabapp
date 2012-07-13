@@ -5,7 +5,7 @@ $base_font_size: $card_height * .083333333;
 
 .card_edit {
   height: $card_height;
-  margin: 24px auto;
+  margin: 0 auto;
   width: $card_width;
 
   .bars{
@@ -84,6 +84,12 @@ $base_font_size: $card_height * .083333333;
   cursor: pointer;
 }
 
+.create_measure_container{
+  .info {
+    display:none;
+  }
+}
+
 
 .input_overlay {
   background-color: #aaa; 
@@ -91,7 +97,7 @@ $base_font_size: $card_height * .083333333;
   padding: $card_height * .015 $card_height * .03 $card_height * .008;
   position: absolute;
   width: $card_width * .13;//.3;
-  z-index: 1000;
+  z-index: 998;
   h1 {
     font-size: $base_font_size * .5;
     margin: 0;

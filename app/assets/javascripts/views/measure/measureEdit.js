@@ -17,11 +17,7 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
   "use strict";
 
 
-  var OverlayView,
-      InstrumentList,
-      TimeSignatureList,
-      GranularityList, 
-      measureEditView = Backbone.View.extend({
+  var measureEditView = Backbone.View.extend({
         className: "measure",
         containers: {
           instrument_list: '.instrument_container',
@@ -33,6 +29,8 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
          //nav
          'keyup': 'checkKeyPressInput',
          //'mousewheel': 'checkMouseScroll',
+         //select text
+         'mouseup .card_edit input': 'preventDeselect',
          //overlay
          'focus .card_edit input': 'addOverlay',
          'blur .card_edit input': 'removeOverlay',
@@ -47,8 +45,6 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
         initialize: function(){
           //console.log('measureEditView.init');	
           _.bindAll(this);
-          
-          window.measureEdit = this;
 
           this.initComponents();
         },
@@ -59,14 +55,14 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
               //granularities = this.options.collections.granularities;
 
 
-          OverlayView = new inputOverlayView({model: this.model, collections: this.options.collections});
+          this.overlayView = new inputOverlayView({model: this.model, collections: this.options.collections});
             
           //console.log('instruments:', instruments);  
-          InstrumentList = new listView({collection: instruments, initial_value: this.model.get('instrument').name });
+          this.instrumentList = new listView({collection: instruments, initial_value: this.model.get('instrument').name });
 
           //console.log('time_signatures:', time_signatures);  
-          TimeSignatureList = new timeSignatureListView({collection: time_signatures, initial_value: this.model.get('time_signature').upper + '/' + this.model.get('time_signature').lower});
-          ''
+          this.timeSignatureList = new timeSignatureListView({collection: time_signatures, initial_value: this.model.get('time_signature').upper + '/' + this.model.get('time_signature').lower});
+    
           ////console.log('granularity:', granularities);            
           //GranularityList = new listView({collection: granularities});
         
@@ -78,7 +74,7 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
 
         },
         render: function(){
-          //console.log('measureEditView.render');	
+          console.log('measureEditView.render');	
           var data = this.model.toJSON(),
               compiledTemplate;
 
@@ -198,11 +194,11 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
 
           $(this.el).find(this.containers.instrument_list)
             .empty()
-            .append(InstrumentList.render().el);
+            .append(this.instrumentList.render().el);
           
           $(this.el).find(this.containers.time_signature_list)
             .empty()
-            .append(TimeSignatureList.render().el);
+            .append(this.timeSignatureList.render().el);
 
           //$(this.el).find(this.containers.granularity_list)
           //  .empty()
@@ -214,7 +210,7 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
           //console.log('measureEditView.renderOverlay'); 
           $(this.el).find(this.containers.overlay)
             .empty()
-            .append(OverlayView.render().el);
+            .append(this.overlayView.render().el);
         },
 
         checkMouseScroll: function(event) {
@@ -423,7 +419,10 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
             .css({'left': position_left, 'top': position_top})
             .removeClass('hide');
 
-          OverlayView.trigger('overlay:type', target_type);            
+          this.overlayView.trigger('overlay:type', target_type);  
+
+          //select input text
+          this.selectText(event);          
         },
         removeOverlay: function(event) {
           var $overlay = $(this.el).find('.input_overlay'),
@@ -594,17 +593,25 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
                 time_signature_id = this.model.get('time_signature').id,
                 chord_id = this.options.collections.chords.search(this.model.get('positions').bar[0].chord)._wrapped[0].id,
                 state_id = 3, //Published
-                data = {};
+                data = {},
+                measures = this.options.collections.measures;
             data.strings = this.model.get('strings');
             data.bars = this.model.get('bars');
             data.positions = this.model.get('positions');//this.purgeData(this.model.get('positions'));
             data = JSON.stringify(data);
 
             this.model.set({'instrument_id': instrument_id, 'time_signature_id': time_signature_id, 'state_id': state_id, 'chord_id': chord_id, 'data': data});
+            
+            var saved = this.model.save();
 
-            this.model.save();
+            if (saved !== false) {
+              console.log('saved:', saved);
+              //console.log('response', JSON.parse(saved.responseText));
+              console.log('this.model', this.model);
+              measures.add(this.model);
+            }
 
-            //trigger event card:saved
+            
           }
         },
 
@@ -671,10 +678,16 @@ function($, _, Backbone, measureEditTemplate, cardTemplate, barTemplate, noteTem
         updateGranularity: function(model) {
           //console.log('measureEditView.updateGranularity');
           //console.log('model', model);
-        },                      
-      });
+        },   
 
-  window.OverlayView = OverlayView;
+        preventDeselect: function(event) {
+          event.preventDefault();
+        },
+        selectText: function(event) {
+          var $target = $(event.target);
+          $target.select();
+        }
+      });
 
   return measureEditView;
 });

@@ -5,10 +5,10 @@ define([
 	var Measure = Backbone.Model.extend({
     urlRoot: '/measures',    
     initialize: function() {
-    	var defaults = this.createDefault(),
-          data = this.get('data');
-    	console.log('defaults:', defaults);
-      console.log('data:', data);
+    	//var defaults = this.createDefault(),
+      var data = this.get('data');
+    	//console.log('defaults:', defaults);
+      //console.log('data:', data);
 
       if(data) {
     	  data = JSON.parse(data);

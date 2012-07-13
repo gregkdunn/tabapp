@@ -1,4 +1,4 @@
 <div class="string string_pos_<%= no %>">
-  <div class="fret"><input name="fret_bar_<%= bar_no %>_string_<%= no %>" type="text" maxlength="2" value="<% if(fret) { %><%= fret %><% } %>"/></div>
-  <div class="accent"><input name="accent_bar_<%= bar_no %>_string_<%= no %>" type="text" maxlength="1" value="<% if(accent) { %><%= accent %><% } %>"/></div> 
+  <div class="fret"><input name="fret_bar_<%= bar_no %>_string_<%= no %>" type="text" maxlength="2" value="<% if(typeof(fret) != "undefined") { %><%= fret %><% } %>"/></div>
+  <div class="accent"><input name="accent_bar_<%= bar_no %>_string_<%= no %>" type="text" maxlength="1" value="<% if(typeof(accent) != "undefined") { %><%= accent %><% } %>"/></div> 
 </div>

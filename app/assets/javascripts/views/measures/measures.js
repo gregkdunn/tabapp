@@ -8,30 +8,28 @@ define([
   'viewMeasuresEdit',
   'viewMeasuresList'
 ], 
-function($, _, Backbone, measuresTemplate, measuresEdit, measuresList){
+function($, _, Backbone, measuresTemplate, measuresCreate, measuresList){
   "use strict";
 
-  var MeasuresEditView, 
-      MeasuresListView, 
-
-      measuresView = Backbone.View.extend({
+  var measuresView = Backbone.View.extend({
       containers: {
-        viewstack: '.measuresContent' 
+        viewstack: '.measures_content',
+        create: '.create_measure_container',
+        list: '.list_measures_container' 
       },  
       events: {
-        'click .create_measure': 'showCreate',
-        'click .list_measures': 'showList'
+        'click .create_measure': 'displayCreate',
+        'click .list_measures': 'displayList'
       },
       initialize: function(){
         //console.log('measuresView.init');	
 
         this.setCollections();
 
-        MeasuresEditView = new measuresEdit({collections: this.options.collections});
-        MeasuresListView = new measuresList({collections: this.options.collections});
+        this.measuresCreateView = new measuresCreate({collections: this.options.collections});
+        this.measuresListView = new measuresList({collections: this.options.collections});
 
-        window.MeasuresEditView = MeasuresEditView;
-        window.MeasuresListView = MeasuresListView;
+        this.options.collections.measures.on('add', this.displayList, this);
       },
       render: function(){
         //console.log('measuresView.render');	
@@ -42,32 +40,39 @@ function($, _, Backbone, measuresTemplate, measuresEdit, measuresList){
           .empty()
           .append( compiledTemplate );
 
-        this.showList();
+        this.renderCreate();
+        this.renderList();
+
+        this.displayList();
 
         return this;
       },
-      renderEdit: function() {
-        //console.log('measuresView.renderEdit');
-        this.renderState(MeasuresEditView.render().el);
+      renderCreate: function() {
+        //console.log('measuresView.renderCreate');
+        $(this.el).find(this.containers.create)
+          .empty()
+          .append(this.measuresCreateView.render().el); 
       },      
       renderList: function() {
         //console.log('measuresView.renderList');
-        this.renderState(MeasuresListView.render().el);
-      },
-      renderState:function(state){
-        //console.log('measuresView.renderState');
-        $(this.el).find(this.containers.viewstack)
+        $(this.el).find(this.containers.list)
           .empty()
-          .append(state);
-        this.delegateEvents(this.events);    
+          .append(this.measuresListView.render().el); 
+
       },
-      showCreate: function() {
-        //console.log('measuresView.createMeasure');
-        this.renderEdit();
+      displayCreate: function() {
+        console.log('measuresView.createMeasure');
+        this.toggle(this.containers.create, this.containers.list);  
       },
-      showList:function() {
-        //console.log('measuresView.listMeasures');
-        this.renderList();      
+      displayList:function() {
+        console.log('measuresView.listMeasures');
+        this.toggle(this.containers.list, this.containers.create);   
+      },
+      toggle: function(to, from) {
+        $(this.el)
+          .find(from).addClass('hide')
+        .end()  
+          .find(to).removeClass('hide');  
       },
       setCollections:function(){
         //set all collections in "collections" object to the view options object

@@ -47,10 +47,10 @@
 
 
   <footer>
-    <small><%= id %></small>
+    <small><% if(typeof(id) != "undefined") { %><%= id %><% } %></small>
   </footer>  
 </div><!-- /card -->
 
 <p class="info">Instrument: <span class="instrument"><%= instrument.name %></span></p>
 <p class="info">Time Signature: <span class="time_signature"><%= time_signature.upper %>/<%= time_signature.lower %></span></p>
-
+<p class="info"><a class="edit">Edit</a></p>

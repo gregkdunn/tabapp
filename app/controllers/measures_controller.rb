@@ -33,7 +33,7 @@ class MeasuresController < ApplicationController
   end  
 
   def update
-    @measure = current_user.tasks.find(params[:id])
+    @measure = Measure.find(params[:id])
 
     #encrypt attributes and test against saved measures
 

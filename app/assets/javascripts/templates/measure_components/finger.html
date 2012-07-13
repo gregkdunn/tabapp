@@ -1,3 +1,3 @@
 <div class="string string_pos_<%= no %>">
-	<div class="finger"><input name="finger_bar_<%= bar_no %>_string_<%= no %>" type="text" maxlength="1" value="<% if(finger) { %><%= finger %><% } %>"/></div>
+	<div class="finger"><input name="finger_bar_<%= bar_no %>_string_<%= no %>" type="text" maxlength="1" value="<% if(typeof(finger) != "undefined") { %><%= finger %><% } %>"/></div>
 </div>

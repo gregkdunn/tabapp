@@ -19,6 +19,7 @@ function($, _, Backbone, measureShowTemplate){
     },
     render: function(){
       //console.log('measureShowView.render');	
+      //console.log('>> this.model:', this.model);
       var data = this.model.toJSON(),
           compiledTemplate;
 

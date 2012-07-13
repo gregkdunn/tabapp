@@ -95,7 +95,5 @@ function($, _, Backbone, overlayTemplate, knobify){
        
     });
 
-  window.overlayView = overlayView;
-
   return overlayView;
 });

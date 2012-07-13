@@ -20,6 +20,10 @@ footer {
 	clear: both;
 }
 
+.clear {
+	clear: both;
+}
+
 .clearfix:after {
   content: ".";
   display: block;
@@ -42,7 +46,7 @@ footer {
 
 .item_list {
 	float: left;
-	margin-right:12px; 
+	margin:0 12px 0 0; 
 	position:relative 
 }
 .item_list .field {

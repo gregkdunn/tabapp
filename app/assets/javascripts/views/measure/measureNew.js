@@ -12,10 +12,8 @@ function($, _, Backbone, measure, measureEdit){
 
   var measureNewView = measureEdit.extend({
     initialize: function(){
-      //console.log('measureNewView.init');
+      console.log('measureNewView.init');
       _.bindAll(this);
-
-      window.measureNewView = this;
 
       var  defaults = {
             time_signature: this.options.collections.time_signatures.get(3).toJSON() , 

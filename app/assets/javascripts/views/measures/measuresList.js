@@ -16,6 +16,9 @@ function($, _, Backbone, measuresListTemplate, measureView){
     },
     initialize: function(){
       //console.log('measuresListView.init');	
+
+      this.options.collections.measures.on('add', this.render, this);
+      this.options.collections.measures.on('remove', this.render, this);
     },
     render: function(){
       //console.log('measuresListView.render');	
@@ -42,10 +45,7 @@ function($, _, Backbone, measuresListTemplate, measureView){
         //console.log('measure: ' + JSON.stringify(measure));
         var view = new measureView({model: measure, collection: measures, collections: collections});
         container.append(view.render().el);
-
-        window.measureView = measureView;
-
-      })      
+      });      
 
     }
   });
